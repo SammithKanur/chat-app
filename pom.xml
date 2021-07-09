@@ -98,8 +98,8 @@
                     <configuration>
                         <url>http://localhost:8080/manager/text</url>
                         <server>TomcatServer</server>
-                        <username>admin</username>
-                        <password>password</password>
+                        <username>{env.tomcatUser}</username>
+                        <password>{env.tomcatPassword}</password>
                         <path>/chat-app</path>
                     </configuration>
                 </plugin>
