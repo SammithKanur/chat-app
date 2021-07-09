@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    overflow: auto;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas: "header"
+                         "content"
+                         "footer";
+}
+.header {
+    grid-area: header;
+    display: flex;
+    align-items: flex-end;
+    background-color: rgba(7, 84, 199, 0.87);
+}
+.fa-list {
+    margin-right: auto;
+    margin-left: 10px;
+    color: rgb(247, 242, 242);
+}
+.fa-list:hover {
+    color: rgb(192, 187, 187);
+}
+.user {
+    background-color: white;
+    width: 3%;
+    height: 100%;
+    margin-right: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.user:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+.user-dropdown {
+    background-color: lightblue;
+    color: black;
+    position: fixed;
+    display: none;
+    right: 10px;
+    font-size: 20px;
+}
+.user-dropdown > ul {
+    list-style: none;
+    display: inline;
+    text-align: center;
+    border-radius: 0 0 2px 2px;
+}
+.user-dropdown > ul > li {
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+.user-dropdown > ul > li:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.fa-user {
+    color: rgba(7, 84, 199, 0.87);
+}
+.content {
+    grid-area: "content";
+    background-color: #FFF5EB;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 100px 1fr;
+    grid-template-areas: "heading"
+                         "navbar"
+                         "info";
+}
+.account-list {
+    display: none;
+    cursor: pointer;
+    left: 5px;
+    position: absolute;
+    background-color: skyblue;
+    text-align: left;
+    border-radius: 5px;
+}
+.account-list > ul > li {
+    font-size: 20px;
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+.account-list > ul > li:hover {
+    background-color: black;
+    color: white;
+}
+.heading {
+    text-align: center;
+    font-size: 60px;
+}
+.navbar {
+    grid-area: navbar;
+    display: flex;
+    margin: 20px 0 0 0;
+    align-items: flex-start;
+    justify-content: center;
+}
+.navbar > input {
+    flex: 0 1 50%;
+    border: none;
+    outline: none;
+    background-color: #FFF5EB;
+    border-bottom: 2px solid black;
+    font-size: 30px;
+    margin: 0 10px 0 0;
+}
+.navbar > .fa-plus:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+.info {
+    grid-area: members;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info > .title {
+    height: 40px;
+    width: 30%;
+    font-size: 30px;
+    text-align: center;
+}
+.info > input {
+    margin: 5px 0 10px 0;
+    height: 50px;
+    width: 30%;
+    border: 2px solid black;
+    outline: none;
+    border-radius: 10px;
+    background-color: #FFF5EB;
+    padding: 0 0 0 10px;
+    font-size: 20px;
+}
+.info > .list {
+    overflow-y: scroll;
+    width: 40%;
+    height: calc(100% - 80px);
+}
+.info > .list > .item {
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    background-color: skyblue;
+    border-bottom: 2px solid black;
+}
+.info > .list > .item > div {
+    font-size: 20px;
+    margin: 0 auto 0 10px;
+}
+.info > .list > .item > button {
+    flex: 0 0 20%;
+    margin: 0 10px 0 10px;
+    height: 40px;
+    width: 10%;
+    padding: 5px;
+    background-color: rgba(7, 84, 199, 0.87);
+    color: white;
+    border-radius: 5px;
+}
+.footer {
+    grid-area: "footer";
+    font-size: 0.8rem;
+    grid-area: footer;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

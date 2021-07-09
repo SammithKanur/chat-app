@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas: "content"
+                         "footer";
+}
+.footer {
+    font-size: 0.8rem;
+    grid-area: footer;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.content {
+    position: relative;
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+    grid-template-areas: "heading"
+                         "form";
+    background-color: rgb(96, 231, 220);
+}
+.content > .heading {
+    text-align: center;
+    grid-area: heading;
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+.content > .form {
+    grid-area: form;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.login-form {
+    margin: 20px 0 0 0;
+    background-color: #F2FCFC;
+    height: 75%;
+    width: 55%;
+    box-shadow: 10px 10px 5px #505152;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+input, input:focus {
+    font-size: 0.8rem;
+    outline: none;
+    border: none;
+    width: 50%;
+    height: 5%;
+    margin: 10px;
+    background-color: #F2FCFC;
+    border-bottom: 2px solid #ccc;
+}
+#buttons {
+    width: 50%;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+#login, #create {
+    font-size: 15px;
+    background-color: #0245A3;
+    color: white;
+    margin: 5px 0;
+    height: 100%;
+    border-radius: 20px;
+    flex: 0 0 auto;
+}
+#login {
+    width: 20%;
+    margin-right: auto;
+}
+#create {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 10px;
+    padding-top: 10px;
+}
+#login:hover, #create:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.message {
+    display: none;
+    color: red;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 150px;
+    z-index:2;
+}
