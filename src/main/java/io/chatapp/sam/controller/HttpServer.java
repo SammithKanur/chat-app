@@ -32,7 +32,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     private static ChatService chatService = new ChatService();
     private static SearchService searchService = new SearchService();
     private static UserService userService = new UserService();
-    private final Properties properties = readPropertiesFile();
+    private final Map<String, Object> properties = readYamlFile();
     @RequestMapping(value = "/request")
     public DeferredResult<ResponseEntity<?>> handleREquest(@RequestBody String message) {
         DeferredResult<ResponseEntity<?>> output = new DeferredResult<>(100L * 1000L);
@@ -112,7 +112,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
         logger.info("username is {} with session {}", userName, session);
         if(!isSessionValid(userName, session))
             return "/login";
-        model.addAllAttributes(Map.of("URL", properties.getProperty("URL"), "WSURL", properties.getProperty("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
             "userName", userName, "session", session));
         return "home";
     }
@@ -122,7 +122,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
             removeHttpSession(userName);
             return "login";
         }
-        model.addAllAttributes(Map.of("URL", properties.getProperty("URL"), "WSURL", properties.getProperty("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
                 "userName", userName, "session", session));
         return "account";
     }
@@ -132,7 +132,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
             removeHttpSession(userName);
             return "login";
         }
-        model.addAllAttributes(Map.of("URL", properties.getProperty("URL"), "WSURL", properties.getProperty("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
                 "userName", userName, "session", session, "friend", friend));
         return "profile";
     }
@@ -143,18 +143,18 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
             removeHttpSession(userName);
             return "login";
         }
-        model.addAllAttributes(Map.of("URL", properties.getProperty("URL"), "WSURL", properties.getProperty("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
                 "userName", userName, "session", session, "groupName", groupName));
         return "group-member";
     }
     @RequestMapping(value = "/create-account-page", method = RequestMethod.GET)
     public String getCreateAccount(ModelMap model) {
-        model.addAllAttributes(Map.of("URL", properties.getProperty("URL"), "WSURL", properties.getProperty("WSURL")));
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL")));
         return "create-account";
     }
     @RequestMapping(value = "/login-page", method = RequestMethod.GET)
     public String getLoginPage(ModelMap model) {
-        model.addAllAttributes(Map.of("URL", properties.getProperty("URL"), "WSURL", properties.getProperty("WSURL")));
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL")));
         return "/login";
     }
 }

@@ -9,7 +9,7 @@
     Object URL = request.getAttribute("URL");
     String cssUrl = URL + "/css-resources";
     String jsUrl = URL + "/js-resources";
-    String createAccount = URL + "/create-account-page";
+    String createAccount = URL + "/user/create-account-page";
     pageContext.setAttribute("cssUrl", cssUrl);
     pageContext.setAttribute("jsUrl", jsUrl);
     pageContext.setAttribute("createAccount", createAccount);

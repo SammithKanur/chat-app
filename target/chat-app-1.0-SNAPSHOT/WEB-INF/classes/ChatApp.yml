@@ -1,0 +1,11 @@
+prod:
+  URL:
+    http://34.93.195.251:8080/chat-app
+  WSURL:
+    ws://34.93.195.251:8080/chat-app/websocket-server
+
+dev:
+  URL:
+    http://localhost:8080/chat-app
+  WSURL:
+    ws://localhost:8080/chat-app/websocket-server

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.LinkedMultiValueMap;
+import org.yaml.snakeyaml.Yaml;
 
 import javax.websocket.Session;
 
@@ -68,13 +69,14 @@ public interface Controller {
             }
         }
     }
-    default Properties readPropertiesFile() {
+    default Map<String, Object> readYamlFile() {
         FileInputStream fls = null;
-        Properties properties = null;
+        Yaml yaml = new Yaml();
+        Map<String, Object> conf = new TreeMap<>();
         try {
-            fls = new FileInputStream("/home/sammith/projects/spring/chat-app/src/main/resources/ChatApp.properties");
-            properties = new Properties();
-            properties.load(fls);
+            fls = new FileInputStream("/home/sammith/projects/spring/chat-app/src/main/resources/ChatApp.yml");
+            conf = yaml.load(fls);
+            conf = (Map<String, Object>)conf.get(System.getenv("chatAppEnv"));
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
@@ -84,6 +86,6 @@ public interface Controller {
                 e.printStackTrace();
             }
         }
-        return properties;
+        return conf;
     }
 }
