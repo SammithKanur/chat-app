@@ -1,7 +1,6 @@
 let friendConnectionType = "friend";
 let groupConnectionType = "group";
 let state = {connectionType:"", connection:""};
-let ws;
 const navigateToProfile = (friend) => {
     window.location = URL + `/user/profile?userName=${userName}&session=${session}&friend=${friend}`;
 };
@@ -192,30 +191,7 @@ const writeMessage = (ele) => {
     }
     $.ajax(ajaxUrl);
 };
-const openWsSession = () => {
-    ws = new WebSocket(WSURL + `/${userName}/${session}`);
-    ws.onopen = (e) => {
-        ws.send("client says hello");
-    };
-    ws.onmessage = (e) => {
-        handleWsMessage(e.data);
-    };
-    ws.onclose = (e) => {
-        console.log("client closing");
-    };
-    ws.onerror = (e) => {
-        console.log("client ws error");
-    };
-};
-const handleWsMessage = (msg) => {
-    msg = JSON.parse(msg);
-    console.log(state);
-    console.log(msg);
-    if(state.connectionType === msg.connectionType && state.connection === msg.connection) {
-        $(".message-area").append(getMessage([msg.message, msg.sender]));
-        resizeTextArea(document.getElementsByClassName("message-area")[0].lastChild.lastChild);
-    }
-};
+
 $(document).ready(() => {
     //load friendList
     openWsSession();

@@ -54,6 +54,12 @@ public interface Controller {
             webSocketSessionUser.remove(sessionId);
         }
     }
+    default Session getWsSession(String userName) {
+        return webSocketSession.get(userName);
+    }
+    default boolean hasWsSession(String userName) {
+        return webSocketSession.containsKey(userName);
+    }
     default boolean isSessionValid(String userName, String session) {
         logger.info("validating session for user {} with session {}", userName, session);
         return userName != null && session != null && httpSession.containsKey(userName) && httpSession.get(userName).equals(session);
@@ -64,8 +70,9 @@ public interface Controller {
                 if(member.equals(sender))
                     continue;
                 Session session = webSocketSession.get(member);
-                session.getBasicRemote().sendText(Encoders.getObjectEncoded(Map.of("connectionType", connectionType,
-                        "connection", connection, "message", message, "sender", sender)));
+                session.getBasicRemote().sendText(Encoders.getObjectEncoded(Map.of("type", "chat-message",
+                        "connectionType", connectionType, "connection", connection,
+                        "message", message, "sender", sender)));
             }
         }
     }

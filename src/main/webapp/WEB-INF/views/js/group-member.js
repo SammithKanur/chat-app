@@ -82,6 +82,7 @@ const addMember = (ele) => {
     });
 };
 $(document).ready(() => {
+    openWsSession();
     loadList({innerText:members});
 });
 

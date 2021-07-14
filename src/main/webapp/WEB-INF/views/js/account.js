@@ -208,5 +208,6 @@ const loadAccount = (ele) => {
 };
 
 $(document).ready(() => {
+    openWsSession();
     loadAccount({});
 });

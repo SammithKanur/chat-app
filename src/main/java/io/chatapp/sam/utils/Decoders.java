@@ -1,10 +1,7 @@
 package io.chatapp.sam.utils;
 
 import com.google.gson.Gson;
-import io.chatapp.sam.dto.FriendDto;
-import io.chatapp.sam.dto.GroupDto;
-import io.chatapp.sam.dto.ServerDto;
-import io.chatapp.sam.dto.UserDto;
+import io.chatapp.sam.dto.*;
 
 public class Decoders {
     private static final Gson gson = new Gson();
@@ -19,5 +16,8 @@ public class Decoders {
     }
     public static ServerDto getServerDto(String message) {
         return gson.fromJson(message, ServerDto.class);
+    }
+    public static RtcpcDto getRtcpcDto(String message){
+        return gson.fromJson(message, RtcpcDto.class);
     }
 }

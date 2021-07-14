@@ -1,5 +1,8 @@
 package io.chatapp.sam.controller;
 
+import io.chatapp.sam.controller.rtcpc.RtcpcController;
+import io.chatapp.sam.dto.ServerDto;
+import io.chatapp.sam.utils.Decoders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +29,16 @@ public class WebSocketServer implements Controller {
     @OnMessage
     public void onMessage(Session session, String message) {
         logger.info("Websocketserver message {}", message);
+        try {
+            ServerDto serverDto = Decoders.getServerDto(message);
+            switch(serverDto.getType()) {
+                case("rtcpc"):
+                    new RtcpcController().request(message);
+                    break;
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     @OnClose
     public void onClose(Session session) {

@@ -98,5 +98,6 @@ const loadProfile = () => {
     })
 }
 $(document).ready(() => {
+    openWsSession();
     loadProfile();
 });
