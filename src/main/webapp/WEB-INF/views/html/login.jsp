@@ -4,8 +4,6 @@
 <%
     Long currentTime = System.currentTimeMillis();
     pageContext.setAttribute("date", currentTime);
-    request.setAttribute("URL", "http://localhost:8080/chat-app");
-    request.setAttribute("WSURL", "ws://localhost:8080/chat-app/websocket-server");
     Object URL = request.getAttribute("URL");
     String cssUrl = URL + "/css-resources";
     String jsUrl = URL + "/js-resources";

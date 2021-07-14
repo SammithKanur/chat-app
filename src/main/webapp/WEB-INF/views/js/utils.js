@@ -125,5 +125,5 @@ const logout = (e) => {
         },
         complete:onComplete,
     })
-    window.location = URL + "/";
+    window.location = URL + "/user/login-page";
 };
