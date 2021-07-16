@@ -4,5 +4,5 @@ RUN apt -y install curl
 RUN mkdir chat-app
 RUN mkdir tomcat
 COPY tomcat /tomcat
-RUN chmod +x /tomcat/apache-tomcat-9.0.46/bin/catalina.sh
-ENTRYPOINT tomcat/apache-tomcat-9.0.46/bin/catalina.sh run
+RUN chmod +x /tomcat/apache-tomcat-9.0.50/bin/catalina.sh
+ENTRYPOINT tomcat/apache-tomcat-9.0.50/bin/catalina.sh run
