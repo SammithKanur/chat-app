@@ -1,6 +1,7 @@
 package io.chatapp.sam.dao;
 
 import io.chatapp.sam.entity.Group;
+import io.chatapp.sam.utils.EnvReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -11,16 +12,18 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class GroupDao {
     private static final Logger logger = LoggerFactory.getLogger(GroupDao.class);
-    private static final String url = "jdbc:h2:~/tmp/h2dbs/chatApp";
-    private static final String dbUserName = "sam";
-    private static final String dbPassword = "sam";
-    private static final String JDBC_DRIVER = "org.h2.Driver";
+    private static final Map<String, Object> properties = EnvReader.getMysqlMetadata();
+    private static final String url = (String)properties.get("url");
+    private static final String dbUserName = (String)properties.get("userName");
+    private static final String dbPassword = (String)properties.get("password");
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     public void insert(Group group) throws Exception {
-        String query = String.format("INSERT INTO GROUPS VALUES('%s', '%s', '%d')", group.getGroupName(),
+        String query = String.format("INSERT INTO `groups` VALUES('%s', '%s', '%d')", group.getGroupName(),
                 group.getUserName(), group.getStatus());
         logger.info(query);
         Connection conn = null;
@@ -44,7 +47,7 @@ public class GroupDao {
         }
     }
     public void deleteOne(String groupName, String userName) throws Exception {
-        String query = String.format("DELETE FROM GROUPS WHERE groupName='%s' AND userName='%s'", groupName,
+        String query = String.format("DELETE FROM `groups` WHERE groupName='%s' AND userName='%s'", groupName,
                 userName);
         Connection conn = null;
         Statement stmt = null;
@@ -67,7 +70,7 @@ public class GroupDao {
         }
     }
     public void deleteUser(String userName) throws Exception {
-        String query = String.format("DELETE FROM GROUPS WHERE userName='%s'", userName);
+        String query = String.format("DELETE FROM `groups` WHERE userName='%s'", userName);
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -89,7 +92,7 @@ public class GroupDao {
         }
     }
     public void updateStatus(String groupName, String userName, Integer status) throws Exception {
-        String query = String.format("UPDATE GROUPS SET status='%d' WHERE groupName='%s' AND userName='%s'", status,
+        String query = String.format("UPDATE `groups` SET status='%d' WHERE groupName='%s' AND userName='%s'", status,
                 groupName, userName);
         Connection conn = null;
         Statement stmt = null;
@@ -112,7 +115,7 @@ public class GroupDao {
         }
     }
     public Integer findStatus(String groupName, String userName) throws Exception {
-        String query = String.format("SELECT status FROM GROUPS WHERE groupName='%s' AND userName='%s'", groupName,
+        String query = String.format("SELECT status FROM `groups` WHERE groupName='%s' AND userName='%s'", groupName,
                 userName);
         logger.info(query);
         Connection conn = null;
@@ -142,7 +145,7 @@ public class GroupDao {
         return status;
     }
     public List<String> findUserByGroup(String groupName, Integer status) throws Exception {
-        String query = String.format("SELECT userName FROM GROUPS WHERE groupName='%s' AND status='%d'", groupName,
+        String query = String.format("SELECT userName FROM `groups` WHERE groupName='%s' AND status='%d'", groupName,
                 status);
         logger.info(query);
         Connection conn = null;
@@ -171,7 +174,7 @@ public class GroupDao {
         return list;
     }
     public List<String> findGroupByUser(String userName, Integer status) throws Exception {
-        String query = String.format("SELECT groupName FROM GROUpS WHERE userName='%s' AND status='%d'", userName, status);
+        String query = String.format("SELECT groupName FROM `groups` WHERE userName='%s' AND status='%d'", userName, status);
         logger.info(query);
         Connection conn = null;
         Statement stmt = null;

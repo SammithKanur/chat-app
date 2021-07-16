@@ -1,5 +1,6 @@
 package io.chatapp.sam.dao;
 
+import io.chatapp.sam.utils.EnvReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -10,16 +11,18 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class FriendsDao {
     private static final Logger logger = LoggerFactory.getLogger(FriendsDao.class);
-    private static final String url = "jdbc:h2:~/tmp/h2dbs/chatApp";
-    private static final String dbUserName = "sam";
-    private static final String dbPassword = "sam";
-    private static final String JDBC_DRIVER = "org.h2.Driver";
+    private static final Map<String, Object> properties = EnvReader.getMysqlMetadata();
+    private static final String url = (String)properties.get("url");
+    private static final String dbUserName = (String)properties.get("userName");
+    private static final String dbPassword = (String)properties.get("password");
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     public void insert(Friends friends) throws Exception {
-        String query = String.format("INSERT INTO FRIENDS VALUES('%s','%s', '%d')",friends.getUser(), friends.getConnection(),
+        String query = String.format("INSERT INTO friends VALUES('%s','%s', '%d')",friends.getUser(), friends.getConnection(),
                 friends.getStatus());
         Connection conn = null;
         Statement stmt = null;
@@ -42,7 +45,7 @@ public class FriendsDao {
         }
     }
     public void deleteOne(String user, String connection) throws Exception {
-        String query = String.format("DELETE FROM FRIENDS WHERE user='%s' AND connection='%s'", user, connection);
+        String query = String.format("DELETE FROM friends WHERE user='%s' AND connection='%s'", user, connection);
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -64,7 +67,7 @@ public class FriendsDao {
         }
     }
     public void deleteUser(String user) throws Exception {
-        String query = String.format("DELETE FROM FRIENDS WHERE user='%s' OR connection='%s'", user, user);
+        String query = String.format("DELETE FROM friends WHERE user='%s' OR connection='%s'", user, user);
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -86,7 +89,7 @@ public class FriendsDao {
         }
     }
     public void updateStatus(String user, String connection, Integer status) throws Exception {
-        String query = String.format("UPDATE FRIENDS SET status='%d' WHERE user='%s' AND connection='%s'", status,
+        String query = String.format("UPDATE friends SET status='%d' WHERE user='%s' AND connection='%s'", status,
                 user, connection);
         Connection conn = null;
         Statement stmt = null;
@@ -109,7 +112,7 @@ public class FriendsDao {
         }
     }
     public Integer findStatus(String userName, String connection) throws Exception {
-        String query = String.format("SELECT status FROM FRIENDS WHERE user='%s' AND connection='%s'", userName,
+        String query = String.format("SELECT status FROM friends WHERE user='%s' AND connection='%s'", userName,
                 connection);
         logger.info(query);
         Connection conn = null;
@@ -138,7 +141,7 @@ public class FriendsDao {
         return status;
     }
     public List<String> findByStatus(String userName, int status) throws Exception {
-        String query = String.format("SELECT connection FROM FRIENDS WHERE user='%s' AND status='%d'", userName,
+        String query = String.format("SELECT connection FROM friends WHERE user='%s' AND status='%d'", userName,
                 status);
         logger.info(query);
         Connection conn = null;

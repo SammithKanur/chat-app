@@ -9,6 +9,7 @@ import io.chatapp.sam.service.ChatService;
 import io.chatapp.sam.service.SearchService;
 import io.chatapp.sam.service.UserService;
 import io.chatapp.sam.utils.Decoders;
+import io.chatapp.sam.utils.EnvReader;
 import io.chatapp.sam.utils.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     private static ChatService chatService = new ChatService();
     private static SearchService searchService = new SearchService();
     private static UserService userService = new UserService();
-    private final Map<String, Object> properties = readYamlFile();
+    private final Map<String, Object> properties = EnvReader.getServerMetadata();
     @RequestMapping(value = "/request")
     public DeferredResult<ResponseEntity<?>> handleREquest(@RequestBody String message) {
         DeferredResult<ResponseEntity<?>> output = new DeferredResult<>(100L * 1000L);

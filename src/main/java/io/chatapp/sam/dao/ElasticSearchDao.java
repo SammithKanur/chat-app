@@ -1,14 +1,18 @@
 package io.chatapp.sam.dao;
 
+import io.chatapp.sam.utils.EnvReader;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 public class ElasticSearchDao {
-    private static final String host = "http://localhost:9201/";
-    private static final String index = "users";
+    private static final Map<String, Object> properties = EnvReader.getElasticSearchMetadata();
+    private static final String host = (String)properties.get("url");
+    private static final String index = (String)properties.get("index");
     private HttpURLConnection getConn(String httpUrl, String method, String jsonRequest) throws Exception {
         URL url = new URL(httpUrl);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();

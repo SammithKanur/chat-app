@@ -1,0 +1,11 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<property name="show_sql">true</property>
+        <mapping class="com.oodd.spring.onetooneunidirectional.entity.Book" />
+        <mapping class="com.oodd.spring.onetooneunidirectional.entity.Shipping" />
+    </session-factory>
+</hibernate-configuration>

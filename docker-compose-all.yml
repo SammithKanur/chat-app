@@ -1,0 +1,62 @@
+version: "3"
+services:
+  chatApp:
+    container_name: chat-app-server
+    build:
+      context: ./chat-app-server
+      dockerfile: Dockerfile
+    image: chat-app-server
+    networks:
+      - mysql
+      - mongo
+      - elasticsearch
+    env_file:
+      - chat-app.env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../:/chat-app
+    depends_on:
+      - mysql
+      - mongoDb
+      - elasticsearch
+  mysql:
+    container_name: chat-app-mysql
+    image: mysql:latest
+    volumes:
+      - /home/sammith/tmp/mysql:/var/lib/mysql
+    ports:
+      - "8081:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=chatApp"
+    networks:
+      - mysql
+  elasticsearch:
+    container_name: chat-app-elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.16
+    ports:
+      - "9201:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+    volumes:
+      - /home/sammith/tmp/elasticsearch:/data
+    networks:
+      - elasticsearch
+  mongoDb:
+    container_name: chat-app-mongo
+    image: mongo:latest
+    ports:
+      - "8085:27017"
+    volumes:
+      - /home/sammith/tmp/mongo:/data
+    networks:
+      - mongo
+
+networks:
+  mysql:
+    driver: bridge
+  mongo:
+    driver: bridge
+  elasticsearch:
+    driver: bridge

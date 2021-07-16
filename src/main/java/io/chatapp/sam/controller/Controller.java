@@ -76,23 +76,4 @@ public interface Controller {
             }
         }
     }
-    default Map<String, Object> readYamlFile() {
-        FileInputStream fls = null;
-        Yaml yaml = new Yaml();
-        Map<String, Object> conf = new TreeMap<>();
-        try {
-            fls = new FileInputStream("/home/sammith/projects/spring/chat-app/src/main/resources/ChatApp.yml");
-            conf = yaml.load(fls);
-            conf = (Map<String, Object>)conf.get(System.getenv("chatAppEnv"));
-        } catch(Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fls.close();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return conf;
-    }
 }

@@ -1,0 +1,1 @@
+cd ~/projects/spring/spring-data-modelling/onetooneunidirectional/ && mvn clean install -DskipTests && sudo rm -rf -v /opt/tomcat/apache-tomcat-9.0.46/webapps/ROOT.war && sudo cp -v target/onetooneunidirectional-1.0.war /opt/tomcat/apache-tomcat-9.0.46/webapps/ROOT.war && sudo /opt/tomcat/apache-tomcat-9.0.46/bin/catalina.sh run

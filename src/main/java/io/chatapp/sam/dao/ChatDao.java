@@ -4,6 +4,7 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.diagnostics.logging.Logger;
+import io.chatapp.sam.utils.EnvReader;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
@@ -11,9 +12,9 @@ import java.util.*;
 
 @Repository
 public class ChatDao {
-    private static String connectionUrl = "localhost:8085";
-    private static String dbName = "chatApp";
-
+    private static final Map<String, Object> properties = EnvReader.getMongoMetadata();
+    private static String connectionUrl = (String)properties.get("url");
+    private static String dbName = (String)properties.get("dbName");
     private MongoCollection<Document> getCollection(String collectionName) {
         MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
         builder.writeConcern(WriteConcern.JOURNAL_SAFE);
