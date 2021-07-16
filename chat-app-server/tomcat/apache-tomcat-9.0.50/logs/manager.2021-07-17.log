@@ -1,0 +1,37 @@
+17-Jul-2021 00:45:34.179 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log HTMLManager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+17-Jul-2021 00:45:34.180 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log HTMLManager: init: Global resources are available
+17-Jul-2021 00:45:34.187 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log HTMLManager: list: Listing contexts for virtual host 'localhost'
+17-Jul-2021 00:45:54.559 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+17-Jul-2021 00:45:54.559 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Global resources are available
+17-Jul-2021 00:45:54.560 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:45:54.560 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: Uploading WAR file to /home/sammith/tomcat/apache-tomcat-9.0.50/webapps/chat-app.war
+17-Jul-2021 00:48:59.122 INFO [catalina-exec-4] org.apache.catalina.core.ApplicationContext.log HTMLManager: list: Listing contexts for virtual host 'localhost'
+17-Jul-2021 00:49:57.824 INFO [catalina-exec-3] org.apache.catalina.core.ApplicationContext.log HTMLManager: stop: Stopping web application '/chat-app'
+17-Jul-2021 00:49:57.890 INFO [catalina-exec-3] org.apache.catalina.core.ApplicationContext.log HTMLManager: list: Listing contexts for virtual host 'localhost'
+17-Jul-2021 00:49:58.928 INFO [catalina-exec-4] org.apache.catalina.core.ApplicationContext.log HTMLManager: undeploy: Undeploying web application at '/chat-app'
+17-Jul-2021 00:49:59.496 INFO [catalina-exec-4] org.apache.catalina.core.ApplicationContext.log HTMLManager: list: Listing contexts for virtual host 'localhost'
+17-Jul-2021 00:54:58.650 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+17-Jul-2021 00:54:58.651 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Global resources are available
+17-Jul-2021 00:54:58.661 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:54:58.661 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: Uploading WAR file to /home/sammith/tomcat/apache-tomcat-9.0.50/webapps/chat-app.war
+17-Jul-2021 00:57:08.347 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+17-Jul-2021 00:57:08.348 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Global resources are available
+17-Jul-2021 00:57:08.355 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:57:09.187 INFO [catalina-exec-2] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:57:10.259 INFO [catalina-exec-3] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:57:11.324 INFO [catalina-exec-4] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:57:45.522 INFO [catalina-exec-2] org.apache.catalina.core.ApplicationContext.log HTMLManager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+17-Jul-2021 00:57:45.522 INFO [catalina-exec-2] org.apache.catalina.core.ApplicationContext.log HTMLManager: init: Global resources are available
+17-Jul-2021 00:57:45.548 INFO [catalina-exec-2] org.apache.catalina.core.ApplicationContext.log HTMLManager: list: Listing contexts for virtual host 'localhost'
+17-Jul-2021 00:58:03.115 INFO [catalina-exec-4] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:58:04.322 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:58:05.390 INFO [catalina-exec-2] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:58:06.454 INFO [catalina-exec-4] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:58:22.454 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 00:58:22.454 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: Uploading WAR file to /home/sammith/tomcat/apache-tomcat-9.0.50/webapps/chat-app.war.tmp
+17-Jul-2021 01:02:48.419 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+17-Jul-2021 01:02:48.419 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: init: Global resources are available
+17-Jul-2021 01:02:48.420 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 01:02:48.421 INFO [catalina-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: Uploading WAR file to /home/sammith/tomcat/apache-tomcat-9.0.50/webapps/chat-app.war.tmp
+17-Jul-2021 01:06:09.111 INFO [catalina-exec-5] org.apache.catalina.core.ApplicationContext.log Manager: deploy: Deploying web application '/chat-app'
+17-Jul-2021 01:06:09.112 INFO [catalina-exec-5] org.apache.catalina.core.ApplicationContext.log Manager: Uploading WAR file to /home/sammith/tomcat/apache-tomcat-9.0.50/webapps/chat-app.war.tmp

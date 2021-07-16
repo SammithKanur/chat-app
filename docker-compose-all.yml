@@ -11,11 +11,11 @@ services:
       - mongo
       - elasticsearch
     env_file:
-      - chat-app.env
+      - ./chat-app-server/chat-app.env
     ports:
       - "8080:8080"
     volumes:
-      - ../:/chat-app
+      - ./:/chat-app
     depends_on:
       - mysql
       - mongoDb
@@ -28,7 +28,7 @@ services:
     ports:
       - "8081:3306"
     environment:
-      - "MYSQL_ROOT_PASSWORD=chatApp"
+      - MYSQL_ROOT_PASSWORD=chatApp
     networks:
       - mysql
   elasticsearch:

@@ -107,8 +107,8 @@
                     <configuration>
                         <url>http://localhost:8080/manager/text</url>
                         <server>TomcatServer</server>
-                        <username>{env.tomcatUser}</username>
-                        <password>{env.tomcatPassword}</password>
+                        <username>${env.tomcatUser}</username>
+                        <password>${env.tomcatPassword}</password>
                         <path>/chat-app</path>
                     </configuration>
                 </plugin>
