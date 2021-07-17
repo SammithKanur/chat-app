@@ -5,11 +5,12 @@ prod:
     WSURL:
       ws://34.93.195.251:8080/chat-app/websocket-server
   mysql:
-    url: "jdbc:mysql://mysql:3306"
+    url: "jdbc:mysql://mysql:3306/chatApp"
+    script-url: "jdbc:mysql://localhost:8081"
     user: "root"
     password: "chatApp"
   mongo:
-    url: "mongo:8085"
+    url: "mongoDb:27017"
     dbName: "chatApp"
   elasticsearch:
     url: "http://elasticsearch:9200/"
@@ -22,11 +23,12 @@ dev:
     WSURL:
       ws://localhost:8080/chat-app/websocket-server
   mysql:
-    url: "jdbc:mysql://mysql:3306"
+    url: "jdbc:mysql://mysql:3306/chatApp"
+    script-url: "jdbc:mysql://localhost:8081"
     user: "root"
     password: "chatApp"
   mongo:
-    url: "mongo:8085"
+    url: "mongoDb:27017"
     dbName: "chatApp"
   elasticsearch:
     url: "http://elasticsearch:9200/"

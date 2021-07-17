@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class EnvReader {
-    private static final String envPath = "/home/sammith/projects/spring/chat-app/src/main/resources/ChatApp.yml";
+    private static final String envPath = System.getenv("chatAppYml");
     public static Map<String, Object> readYamlFile() {
         FileInputStream fls = null;
         Yaml yaml = new Yaml();

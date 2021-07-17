@@ -15,7 +15,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./:/chat-app
+      - ./chat-app-server/war:/tomcat/apache-tomcat-9.0.50/webapps
+      - ./src/main/resources:/chat-app-resources
     depends_on:
       - mysql
       - mongoDb
