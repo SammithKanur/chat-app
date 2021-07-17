@@ -111,7 +111,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     public String getHome(@RequestParam String userName, @RequestParam String session, ModelMap model) {
         logger.info("username is {} with session {}", userName, session);
         if(!isSessionValid(userName, session))
-            return "/login";
+            return getLoginPage(model);
         model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
             "userName", userName, "session", session));
         return "home";
@@ -120,7 +120,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     public String getAccount(@RequestParam String userName, @RequestParam String session, ModelMap model) {
         if(!isSessionValid(userName, session)) {
             removeHttpSession(userName);
-            return "login";
+            return getLoginPage(model);
         }
         model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
                 "userName", userName, "session", session));
@@ -130,7 +130,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     public String getProfile(@RequestParam String userName, @RequestParam String session, @RequestParam String friend, ModelMap model) {
         if(!isSessionValid(userName, session)) {
             removeHttpSession(userName);
-            return "login";
+            return getLoginPage(model);
         }
         model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
                 "userName", userName, "session", session, "friend", friend));
@@ -141,7 +141,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
                                  @RequestParam String groupName, ModelMap model) {
         if(!isSessionValid(userName, session)) {
             removeHttpSession(userName);
-            return "login";
+            return getLoginPage(model);
         }
         model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
                 "userName", userName, "session", session, "groupName", groupName));

@@ -28,6 +28,7 @@ const addRtcEvents = (peer) => {
         switch(peerConnection.connectionState) {
             case("connected"):
                 alert(`${userName} and ${peer} conncted through p2p`);
+
                 break;
             case("disconnected"):
                 alert(`${peer} disconnected`);
@@ -41,6 +42,9 @@ const addRtcEvents = (peer) => {
                 peer:peer, payload:event.candidate}));
         }
     });
+    peerConnection.addEventListener("datachannel", event => {
+
+    })
     peerDetails[peer] = peerConnection;
 };
 const openWsSession = () => {

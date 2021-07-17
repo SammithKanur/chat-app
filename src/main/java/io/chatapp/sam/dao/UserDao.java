@@ -123,7 +123,7 @@ public class UserDao {
         return user;
     }
     public void updateGroupsByValue(String userName, Integer value) throws Exception {
-        String query = String.format("UPDATE user SET groups = groups + %d WHERE userName = '%s'", value, userName);
+        String query = String.format("UPDATE user SET `groups` = `groups` + %d WHERE userName = '%s'", value, userName);
         logger.info(query);
         Connection conn = null;
         Statement stmt = null;
