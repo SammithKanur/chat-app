@@ -20,6 +20,7 @@
     <link href="<c:url value="${pageContext.getAttribute('cssUrl')}/utils.css?time=${pageContext.getAttribute('date')}"/>" rel="stylesheet" />
     <script src="<c:url value="${pageContext.getAttribute('jsUrl')}/utils.js?time=${pageContext.getAttribute('date')}"/>"></script>
     <script src="<c:url value="${pageContext.getAttribute('jsUrl')}/home.js?time=${pageContext.getAttribute('date')}"/>"></script>
+    <script src="<c:url value="${pageContext.getAttribute('jsUrl')}/rtcpc.js?time=${pageContext.getAttribute('date')}"/>"></script>
 </head>
 <body>
 <div class="popup">

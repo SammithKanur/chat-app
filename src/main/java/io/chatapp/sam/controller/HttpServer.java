@@ -155,6 +155,6 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     @RequestMapping(value = "/login-page", method = RequestMethod.GET)
     public String getLoginPage(ModelMap model) {
         model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL")));
-        return "/login";
+        return "login";
     }
 }

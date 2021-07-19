@@ -24,7 +24,7 @@ public class RtcpcController implements Controller {
         }
     }
     private void sendMessage(RtcpcDto rtcpcDto, String message) throws Exception {
-        if(hasWsSession(rtcpcDto.getPeer())) {
+        if(!hasWsSession(rtcpcDto.getPeer())) {
             Session session = getWsSession(rtcpcDto.getSender());
             session.getBasicRemote().sendText(Encoders.getObjectEncoded(new RtcpcDto("rtcpc",
                     "error", rtcpcDto.getPeer() + " is offline", "", "")));

@@ -47,6 +47,7 @@ const removeAccount = (ele) => {
         },
         error: function(data) {
             console.log(data);
+            logout(ele);
         },
         complete:onComplete,
     });

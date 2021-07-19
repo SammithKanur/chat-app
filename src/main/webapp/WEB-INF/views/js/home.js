@@ -96,12 +96,13 @@ const resizeTextArea = (e) => {
 };
 const getGroupListItem = (connectionName) => {
     return `<div connectionType="${groupConnectionType}" connection="${connectionName}" onclick="loadMesages(this)">${connectionName}` +
-        `<div class="fa fa-cog" onclick="getGroupSettings(this)" ` +
+        `<div class="fa fa-cog" onclick="getGroupSettings(this)"` +
         `connectionName="${connectionName}"></div></div>`;
 };
 const getFriendListItem = (connectionName) => {
     return `<div connectionType="${friendConnectionType}" connection="${connectionName}" onclick="loadMesages(this)"> ` +
-        `${connectionName}</div>`;
+        `${connectionName} <div class="fa fa-phone" onclick="createPeerConnection(this)" ` +
+        `connection="${connectionName}"></div></div>`;
 };
 const getGroupSettings = (ele) => {
     let connection = ele.getAttribute("connectionName");
@@ -170,6 +171,7 @@ const loadMesages = (ele) => {
 };
 const writeMessage = (ele) => {
     let message = $(".chat-area").val();
+    dataChannel.send("rtcp2p message " + message);
     let ajaxUrl = {
         url:URL + "/user/request",
         type:"POST",

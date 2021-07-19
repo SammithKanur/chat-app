@@ -196,24 +196,16 @@ body {
     height: 40px;
     border-bottom: 2px solid black;
 }
-.friends-list > .list > div, .groups-list > .list > div {
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    border-bottom: 2px solid black;
-}
 .friends-list > .list > div:hover, .groups-list > .list > div:hover {
     color: white;
     background-color: black;
     cursor: pointer;
 }
-.groups-list > .list > div > .fa-cog {
-    display: block;
+.groups-list > .list > div > .fa-cog, .friends-list > .list > div > .fa-phone {
+    display: inline-block;
     margin: 0 5px;
 }
-.groups-list > .list > div > .fa-cog:hover {
+.groups-list > .list > div > .fa-cog:hover, .friends-list > .list > div > .fa-phone:hover {
     color:rgb(179, 177, 177);
 }
 .groups-list {

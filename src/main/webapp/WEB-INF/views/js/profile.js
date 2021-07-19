@@ -55,18 +55,16 @@ const handleConnection = (ele) => {
     $.ajax(ajaxUrl);
 };
 const setButtonStatus = (status) => {
+    $(".profile > .button-area > .btn2").hide();
     switch (status) {
         case("not connected"):
-            $(".profile > .button-area > button").text(sendRequest);
-            $(".profile > .button-area > .btn2").hide();
+            $(".profile > .button-area > .btn1").text(sendRequest);
             break;
         case("Friends"):
-            $(".profile > .button-area > button").text(unfollow);
-            $(".profile > .btn2").hide();
+            $(".profile > .button-area > .btn1").text(unfollow);
             break;
         case("Pending"):
-            $(".profile > .button-area > button").text(withdrawRequest);
-            $(".profile > .button-area > .btn2").hide();
+            $(".profile > .button-area > .btn1").text(withdrawRequest);
             break;
         case("Request"):
             $(".profile > .button-area > .btn1").text(acceptRequest);
