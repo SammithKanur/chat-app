@@ -27,6 +27,7 @@ public class UserDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -51,6 +52,7 @@ public class UserDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -72,6 +74,7 @@ public class UserDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -95,6 +98,7 @@ public class UserDao {
         Statement stmt = null;
         User user = new User();
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -124,6 +128,7 @@ public class UserDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -146,6 +151,7 @@ public class UserDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);

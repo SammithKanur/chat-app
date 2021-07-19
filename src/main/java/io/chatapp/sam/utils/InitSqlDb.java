@@ -17,7 +17,7 @@ public class InitSqlDb {
     private static final Logger logger = LoggerFactory.getLogger(InitSqlDb.class);
     private static final Map<String, Object> properties = EnvReader.getMysqlMetadata();
     private static final String url = (String)properties.get("script-url");
-    private static final String dbUserName = (String)properties.get("user");
+    private static final String dbUserName = (String)properties.get("userName");
     private static final String dbPassword = (String)properties.get("password");
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     public static void main(String[] args) {
@@ -32,7 +32,7 @@ public class InitSqlDb {
         Connection conn = null;
         Statement stmt = null;
         try {
-//            Class.forName(JDBC_DRIVER);
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             ScriptRunner sr = new ScriptRunner(conn);
             Reader reader = new BufferedReader(new FileReader("src/main/resources/schema.sql"));

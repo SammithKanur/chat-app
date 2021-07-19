@@ -29,6 +29,7 @@ public class GroupDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -51,6 +52,7 @@ public class GroupDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -72,6 +74,7 @@ public class GroupDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -94,6 +97,7 @@ public class GroupDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -118,6 +122,7 @@ public class GroupDao {
         Statement stmt = null;
         int status = 0;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -147,6 +152,7 @@ public class GroupDao {
         Statement stmt = null;
         List<String> list = new LinkedList<>();
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -174,6 +180,7 @@ public class GroupDao {
         Statement stmt = null;
         List<String> list = new LinkedList<>();
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);

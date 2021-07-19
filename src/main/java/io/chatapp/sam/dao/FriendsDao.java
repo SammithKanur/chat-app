@@ -27,6 +27,7 @@ public class FriendsDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -48,6 +49,7 @@ public class FriendsDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -69,6 +71,7 @@ public class FriendsDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -91,6 +94,7 @@ public class FriendsDao {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
@@ -115,6 +119,7 @@ public class FriendsDao {
         Statement stmt = null;
         int status = 0;
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -143,6 +148,7 @@ public class FriendsDao {
         Statement stmt = null;
         List<String> list = new LinkedList<>();
         try {
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);

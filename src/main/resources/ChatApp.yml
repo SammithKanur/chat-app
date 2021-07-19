@@ -7,7 +7,7 @@ prod:
   mysql:
     url: "jdbc:mysql://mysql:3306/chatApp"
     script-url: "jdbc:mysql://localhost:8081"
-    user: "root"
+    userName: "root"
     password: "chatApp"
   mongo:
     url: "mongoDb:27017"
