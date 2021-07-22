@@ -25,7 +25,7 @@ services:
     container_name: chat-app-mysql
     image: mysql:latest
     volumes:
-      - /home/sammith/tmp/mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
     ports:
       - "8081:3306"
     environment:
@@ -39,18 +39,29 @@ services:
       - "9201:9200"
       - "9300:9300"
     environment:
-      - "discovery.type=single-node"
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
     volumes:
-      - /home/sammith/tmp/elasticsearch:/data
+      - ./elasticsearch:/usr/share/elasticsearch/data:rw
     networks:
       - elasticsearch
+    restart: unless-stopped
   mongoDb:
     container_name: chat-app-mongo
     image: mongo:latest
     ports:
       - "8085:27017"
     volumes:
-      - /home/sammith/tmp/mongo:/data
+      - ./mongo:/data/db
     networks:
       - mongo
 
