@@ -1,11 +1,15 @@
 package io.chatapp.sam.service;
 
+import io.chatapp.sam.controller.Controller;
 import io.chatapp.sam.dao.FriendsDao;
+import io.chatapp.sam.dto.RtcpcDto;
 import io.chatapp.sam.entity.Friends;
+import io.chatapp.sam.utils.Encoders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.websocket.Session;
 import java.util.List;
 
 @Service
@@ -27,13 +31,13 @@ public class FriendsService {
     public void updateStatus(Friends friends) throws Exception {
         friendsDao.updateStatus(friends.getUser(), friends.getConnection(), friends.getStatus());
     }
-    public List<String> getFriends(String user) throws Exception {
+    public List<Friends> getFriends(String user) throws Exception {
         return friendsDao.findByStatus(user, 3);
     }
-    public List<String> getPendingInvitations(String user) throws Exception {
+    public List<Friends> getPendingInvitations(String user) throws Exception {
         return friendsDao.findByStatus(user, 2);
     }
-    public List<String> getConnectionRequests(String user) throws Exception {
+    public List<Friends> getConnectionRequests(String user) throws Exception {
         return friendsDao.findByStatus(user, 1);
     }
     public String getStatus(String user, String connection) throws Exception {
@@ -51,5 +55,8 @@ public class FriendsService {
     }
     public boolean isFriend(String user, String connection) throws Exception {
         return !getStatus(user, connection).equals("not connected");
+    }
+    public void updateCalling(String user, String connection, Integer calling) throws Exception {
+        friendsDao.setCalling(user, connection, calling);
     }
 }

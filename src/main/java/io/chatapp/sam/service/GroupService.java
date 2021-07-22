@@ -1,6 +1,7 @@
 package io.chatapp.sam.service;
 
 import io.chatapp.sam.dao.GroupDao;
+import io.chatapp.sam.dto.GroupDto;
 import io.chatapp.sam.entity.Group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,16 +29,16 @@ public class GroupService {
     public String getStatus(String groupName, String userName) throws Exception {
         return trackStatus(groupDao.findStatus(groupName, userName));
     }
-    public List<String> getGroupRequests(String userName) throws Exception {
+    public List<Group> getGroupRequests(String userName) throws Exception {
         return groupDao.findGroupByUser(userName, 1);
     }
-    public List<String> getGroups(String userName) throws Exception {
+    public List<Group> getGroups(String userName) throws Exception {
         return groupDao.findGroupByUser(userName, 2);
     }
-    public List<String> getMembers(String groupName) throws Exception {
+    public List<Group> getMembers(String groupName) throws Exception {
         return groupDao.findUserByGroup(groupName, 2);
     }
-    public List<String> getRequests(String groupName) throws Exception {
+    public List<Group> getRequests(String groupName) throws Exception {
         return groupDao.findUserByGroup(groupName, 1);
     }
     public String trackStatus(Integer status) {
@@ -52,5 +53,14 @@ public class GroupService {
     }
     public boolean isMember(String groupName, String userName) throws Exception {
         return !getStatus(groupName, userName).equals("not member");
+    }
+    public void updateInMeeting(String groupName, String userName, Integer inMeeting) throws Exception {
+        groupDao.setinMeeting(groupName, userName, inMeeting);
+    }
+    public void updateInMeeting(String userName, Integer inMeeting) throws Exception {
+        groupDao.setinMeeting(userName, inMeeting);
+    }
+    public Integer getInMeeting(String groupName) throws Exception {
+        return groupDao.getinMeeting(groupName);
     }
 }

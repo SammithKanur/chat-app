@@ -10,6 +10,15 @@ public class Group {
     @Id
     private String userName;
     private Integer status;
+    private Integer inMeeting;
+
+    public void setInMeeting(Integer inMeeting) {
+        this.inMeeting = inMeeting;
+    }
+
+    public Integer getInMeeting() {
+        return inMeeting;
+    }
 
     public void setStatus(Integer status) {
         this.status = status;

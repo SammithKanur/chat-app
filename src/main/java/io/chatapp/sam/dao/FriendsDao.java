@@ -22,8 +22,8 @@ public class FriendsDao {
     private static final String dbPassword = (String)properties.get("password");
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     public void insert(Friends friends) throws Exception {
-        String query = String.format("INSERT INTO friends VALUES('%s','%s', '%d')",friends.getUser(), friends.getConnection(),
-                friends.getStatus());
+        String query = String.format("INSERT INTO friends VALUES('%s','%s', '%d', '%d')",friends.getUser(), friends.getConnection(),
+                friends.getStatus(), friends.getCalling());
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -140,20 +140,23 @@ public class FriendsDao {
         }
         return status;
     }
-    public List<String> findByStatus(String userName, int status) throws Exception {
-        String query = String.format("SELECT connection FROM friends WHERE user='%s' AND status='%d'", userName,
+    public List<Friends> findByStatus(String userName, int status) throws Exception {
+        String query = String.format("SELECT connection, calling FROM friends WHERE user='%s' AND status='%d'", userName,
                 status);
         logger.info(query);
         Connection conn = null;
         Statement stmt = null;
-        List<String> list = new LinkedList<>();
+        List<Friends> list = new LinkedList<>();
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
-                list.add(rs.getString("connection"));
+                Friends friends = new Friends();
+                friends.setCalling(rs.getInt("calling"));;
+                friends.setConnection(rs.getString("connection"));
+                list.add(friends);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -168,5 +171,28 @@ public class FriendsDao {
             }
         }
         return list;
+    }
+    public void setCalling(String user, String connection, Integer calling) throws Exception {
+        String query = String.format("UPDATE friends SET calling='%d' WHERE user='%s' AND connection='%s'", calling,
+                user, connection);
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+        } catch(Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+                if(conn != null) conn.close();
+                if(stmt != null) stmt.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
+        }
     }
 }

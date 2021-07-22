@@ -17,9 +17,9 @@ public class Mapper {
         return user;
     }
     public static Friends friendDtoToFriends(FriendDto friendDto) {
-        return Builder.friendsBuilder(friendDto.getUser(), friendDto.getConnection(), friendDto.getStatus());
+        return Builder.friendsBuilder(friendDto.getUser(), friendDto.getConnection(), friendDto.getStatus(), friendDto.getCalling());
     }
     public static Group groupDtoToGroup(GroupDto groupDto) {
-        return Builder.groupBuilder(groupDto.getGroupName(), groupDto.getUserName(), groupDto.getStatus());
+        return Builder.groupBuilder(groupDto.getGroupName(), groupDto.getUserName(), groupDto.getStatus(), groupDto.getInMeeting());
     }
 }

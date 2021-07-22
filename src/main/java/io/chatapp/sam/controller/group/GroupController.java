@@ -1,20 +1,27 @@
 package io.chatapp.sam.controller.group;
 
 import io.chatapp.sam.controller.Controller;
+import io.chatapp.sam.controller.websocketserver.WebSocketHomeServer;
 import io.chatapp.sam.dto.FriendDto;
 import io.chatapp.sam.dto.GroupDto;
+import io.chatapp.sam.dto.RtcpcDto;
 import io.chatapp.sam.dto.ServerDto;
+import io.chatapp.sam.entity.Group;
 import io.chatapp.sam.service.ChatService;
 import io.chatapp.sam.service.FriendsService;
 import io.chatapp.sam.service.GroupService;
 import io.chatapp.sam.service.UserService;
 import io.chatapp.sam.utils.Decoders;
+import io.chatapp.sam.utils.Encoders;
 import io.chatapp.sam.utils.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @org.springframework.stereotype.Controller
@@ -58,14 +65,18 @@ public class GroupController implements Controller {
             case("user-group-list"):
                 result = new ResponseEntity<>(getUserGroups(groupDto), jsonHttpHeader, HttpStatus.OK);
                 break;
+            case("update-inMeeting"):
+                result = new ResponseEntity<>(updateInMeeting(groupDto), textHttpHeader, HttpStatus.OK);
+                break;
         }
         return result;
     }
 
     private ResponseEntity<?> createGroup(GroupDto groupDto) throws Exception {
         if(!groupDto.getGroupName().isEmpty() && !groupService.isGroupPresent(groupDto.getGroupName())) {
-            chatService.insertGroup(groupDto.getGroupName());
             groupService.insertGroup(Mapper.groupDtoToGroup(groupDto));
+
+            chatService.insertGroup(groupDto.getGroupName());
             userService.updateGroupsByValue(groupDto.getUserName(), 1);
             return new ResponseEntity<>("successfully created group", textHttpHeader, HttpStatus.OK);
         }
@@ -99,8 +110,14 @@ public class GroupController implements Controller {
     private String writeChat(GroupDto groupDto) throws Exception {
         chatService.insertGroupMessage(groupDto.getGroupName(), groupDto.getMessage(),
                 groupDto.getUserName());
-        sendMessage(groupService.getMembers(groupDto.getGroupName()), "group", groupDto.getGroupName(),
-                groupDto.getMessage(), groupDto.getUserName());
+        List<String> members = new LinkedList<>();
+        for(Group group : groupService.getMembers(groupDto.getGroupName())) {
+            members.add(group.getUserName());
+        }
+        WebSocketHomeServer.sendMessage(members, String.format(
+                "{\"connectionType\":\"%s\", \"connection\":\"%s\", \"sender\":\"%s\", \"message\":\"%s\", " +
+                        "\"type\":\"chat-message\"}", "group",
+                groupDto.getGroupName(), groupDto.getUserName(), groupDto.getMessage()), groupDto.getUserName());
         return "success";
     }
     private Map<String, Object> getGroupMembers(GroupDto groupDto) throws Exception {
@@ -114,5 +131,26 @@ public class GroupController implements Controller {
     }
     private Map<String, Object> getUserGroups(GroupDto groupDto) throws Exception {
         return Map.of("user-groups", groupService.getGroups(groupDto.getUserName()));
+    }
+    public String updateInMeeting(GroupDto groupDto) throws Exception {
+        groupService.updateInMeeting(groupDto.getGroupName(), groupDto.getUserName(), groupDto.getInMeeting());
+        List<Group> members = groupService.getMembers(groupDto.getGroupName());
+        if(groupDto.getInMeeting() == 1) {
+            for(Group member : members) {
+                WebSocketHomeServer.sendMessage(Arrays.asList(member.getUserName()), Encoders.getObjectEncoded(
+                        new RtcpcDto("rtcpc", "notify-peer", String.format(
+                                "{\"peerType\":\"group\", \"state\":\"ring\"}"), "", groupDto.getGroupName())), "");
+            }
+        } else {
+            Integer membersInMeeting = groupService.getInMeeting(groupDto.getGroupName());
+            if(membersInMeeting == 0) {
+                for(Group member : members) {
+                    WebSocketHomeServer.sendMessage(Arrays.asList(member.getUserName()), Encoders.getObjectEncoded(
+                            new RtcpcDto("rtcpc", "notify-peer", String.format(
+                                    "{\"peerType\":\"group\", \"state\":\"stopRing\"}"), "", groupDto.getGroupName())), "");
+                }
+            }
+        }
+        return "success";
     }
 }

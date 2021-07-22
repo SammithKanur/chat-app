@@ -1,7 +1,17 @@
 let ws;
+const getHome = (ele) => {
+    window.location = URL + `/user/home?userName=${userName}&session=${session}`;
+};
 const showBuffer = () => {
     let loader = '<div class="buffer"><div class="loader"></div></div>';
     $("body").append(loader);
+};
+const stopRingPhone = (ele) => {
+    ele.style.animation = "none";
+}
+const ringPhone = (ele) => {
+    ele.style["animation"] = "shake 0.5s";
+    ele.style["animation-iteration-count"] = "infinite";
 };
 const hideBuffer = () => {
     $(".buffer").remove();
@@ -14,7 +24,7 @@ const beforeSend = (xhr) => {
 const onComplete = (data) => {hideBuffer();}
 
 const openWsSession = () => {
-    ws = new WebSocket(WSURL + `/${userName}/${session}`);
+    ws = getWs();
     ws.onopen = (e) => {
         console.log("websocket connection is open");
     };
@@ -29,8 +39,8 @@ const openWsSession = () => {
     };
 };
 const handleWsMessage = (msg) => {
-    msg = JSON.parse(msg);
     console.log(msg);
+    msg = JSON.parse(msg);
     switch(msg.type) {
         case("chat-message"):
             handleChatMessage(msg);
@@ -40,13 +50,45 @@ const handleWsMessage = (msg) => {
             break;
     }
 };
-const handleChatMessage = (msg) => {
-    if(state.connectionType === msg.connectionType && state.connection === msg.connection) {
-        $(".message-area").append(getMessage([msg.message, msg.sender]));
-        resizeTextArea(document.getElementsByClassName("message-area")[0].lastChild.lastChild);
+const handleRtcpcMessage = (msg) => {
+    switch(msg.subtype) {
+        case("notify-peer"):
+            recvPeerNote(msg);
+            break;
+        case("offer"):
+            recvRtcOffer(msg);
+            break;
+        case("answer"):
+            recvRtcAnswer(msg);
+            break;
+        case("icecandidate"):
+            recvRtcIcecandidate(msg);
+            break;
     }
 };
-
+const recvPeerNote = (msg) => {
+    console.log("peerNote");
+    console.log(msg);
+    let sender = msg.sender;
+    let payload = JSON.parse(msg.payload);
+    console.log(payload);
+    switch(payload.peerType) {
+        case("friend"):
+            if(payload.state === "ring") {
+                ringPhone(document.querySelector(`.friends-list > .list > div[connection=${sender}] > .fa-phone`));
+            } else {
+                stopRingPhone(document.querySelector(`.friends-list > .list > div[connection=${sender}] > .fa-phone`));
+            }
+            break;
+        case("group"):
+            if(payload.state === "ring") {
+                ringPhone(document.querySelector(`.groups-list > .list > div[connection=${sender}] > .fa-phone`));
+            } else {
+                stopRingPhone(document.querySelector(`.groups-list > .list > div[connection=${sender}] > .fa-phone`));
+            }
+            break;
+    }
+};
 const logout = (e) => {
     $.ajax({
         url: URL + "/user/request",

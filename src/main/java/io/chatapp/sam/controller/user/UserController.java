@@ -2,6 +2,7 @@ package io.chatapp.sam.controller.user;
 
 import io.chatapp.sam.controller.Controller;
 import io.chatapp.sam.dto.UserDto;
+import io.chatapp.sam.entity.Friends;
 import io.chatapp.sam.entity.User;
 import io.chatapp.sam.service.*;
 import io.chatapp.sam.utils.Decoders;
@@ -58,9 +59,9 @@ public class UserController implements Controller {
         return "success";
     }
     private String getAccountRemove(UserDto userDto) throws Exception {
-        List<String> friends = friendsService.getFriends(userDto.getUserName());
-        for(String friend : friends) {
-            chatService.deleteFriend(friend, userDto.getUserName());
+        List<Friends> friends = friendsService.getFriends(userDto.getUserName());
+        for(Friends friend : friends) {
+            chatService.deleteFriend(friend.getConnection(), userDto.getUserName());
         }
         userService.deleteUser(userDto.getUserName());
         friendsService.removeUser(userDto.getUserName());

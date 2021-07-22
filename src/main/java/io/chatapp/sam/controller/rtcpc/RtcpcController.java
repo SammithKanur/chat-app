@@ -12,6 +12,8 @@ public class RtcpcController implements Controller {
     public void request(String message) throws Exception {
         RtcpcDto rtcpcDto = Decoders.getRtcpcDto(message);
         switch(rtcpcDto.getSubtype()) {
+            case("notify-peer"):
+                break;
             case("offer"):
                 sendMessage(rtcpcDto, message);
                 break;
@@ -24,13 +26,7 @@ public class RtcpcController implements Controller {
         }
     }
     private void sendMessage(RtcpcDto rtcpcDto, String message) throws Exception {
-        if(!hasWsSession(rtcpcDto.getPeer())) {
-            Session session = getWsSession(rtcpcDto.getSender());
-            session.getBasicRemote().sendText(Encoders.getObjectEncoded(new RtcpcDto("rtcpc",
-                    "error", rtcpcDto.getPeer() + " is offline", "", "")));
-        } else {
-            Session session = getWsSession(rtcpcDto.getPeer());
-            session.getBasicRemote().sendText(message);
-        }
+
     }
+
 }

@@ -2,8 +2,10 @@ prod:
   server:
     URL:
       http://sammith-projects.tk:8080/chat-app
-    WSURL:
-      ws://sammith-projects.tk:8080/chat-app/websocket-server
+    WSHOMEURL:
+      ws://sammith-projects.tk:8080/chat-app/websocket-home-server
+    WSMEETINGURL:
+      ws://sammith-projects.tk:8080/chat-app/websocket-meeting-server
   mysql:
     url: "jdbc:mysql://mysql:3306/chatApp"
     script-url: "jdbc:mysql://localhost:8081"
@@ -20,8 +22,10 @@ dev:
   server:
     URL:
       http://localhost:8080/chat-app
-    WSURL:
-      ws://localhost:8080/chat-app/websocket-server
+    WSHOMEURL:
+      ws://localhost:8080/chat-app/websocket-home-server
+    WSMEETINGURL:
+      ws://localhost:8080/chat-app/websocket-meeting-server
   mysql:
     url: "jdbc:mysql://mysql:3306/chatApp"
     script-url: "jdbc:mysql://localhost:8081"
@@ -38,8 +42,10 @@ local:
   server:
     URL:
       http://localhost:8080/chat-app
-    WSURL:
-      ws://localhost:8080/chat-app/websocket-server
+    WSHOMEURL:
+      ws://localhost:8080/chat-app/websocket-home-server
+    WSMEETINGURL:
+      ws://localhost:8080/chat-app/websocket-meeting-server
   mysql:
     url: "jdbc:mysql://localhost:8081/chatApp"
     script-url: "jdbc:mysql://localhost:8081"

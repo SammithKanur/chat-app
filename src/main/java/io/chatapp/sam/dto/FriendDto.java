@@ -4,6 +4,22 @@ public class FriendDto {
     private String connection;
     private String message;
     private Integer status;
+    private Integer calling;
+
+    public FriendDto(String user, String connection, String message, Integer status, Integer calling) {
+        this.user = user;
+        this.connection = connection;
+        this.message = message;
+        this.status = status;
+        this.calling = calling;
+    }
+    public Integer getCalling() {
+        return calling;
+    }
+
+    public void setCalling(Integer calling) {
+        this.calling = calling;
+    }
 
     public String getMessage() {
         return message;

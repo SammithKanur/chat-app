@@ -4,6 +4,22 @@ public class GroupDto {
     private String userName;
     private String message;
     private Integer status;
+    private Integer inMeeting;
+
+    public GroupDto(String groupName, String userName, String message, Integer status, Integer inMeeting) {
+        this.groupName = groupName;
+        this.userName = userName;
+        this.message = message;
+        this.status = status;
+        this.inMeeting = inMeeting;
+    }
+    public Integer getInMeeting() {
+        return inMeeting;
+    }
+
+    public void setInMeeting(Integer inMeeting) {
+        this.inMeeting = inMeeting;
+    }
 
     public String getMessage() {
         return message;

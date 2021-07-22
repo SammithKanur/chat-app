@@ -112,7 +112,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
         logger.info("username is {} with session {}", userName, session);
         if(!isSessionValid(userName, session))
             return getLoginPage(model);
-        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSHOMEURL"),
             "userName", userName, "session", session));
         return "home";
     }
@@ -122,7 +122,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
             removeHttpSession(userName);
             return getLoginPage(model);
         }
-        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSHOMEURL"),
                 "userName", userName, "session", session));
         return "account";
     }
@@ -132,7 +132,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
             removeHttpSession(userName);
             return getLoginPage(model);
         }
-        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSHOMEURL"),
                 "userName", userName, "session", session, "friend", friend));
         return "profile";
     }
@@ -143,18 +143,29 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
             removeHttpSession(userName);
             return getLoginPage(model);
         }
-        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL"),
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSHOMEURL"),
                 "userName", userName, "session", session, "groupName", groupName));
         return "group-member";
     }
+    @RequestMapping(value = "/meeting", method = RequestMethod.GET)
+    public String getMeetingPage(@RequestParam String userName, @RequestParam String session,
+                                 @RequestParam String connection, @RequestParam String peerType, ModelMap model) {
+        if(!isSessionValid(userName, session)) {
+            removeHttpSession(userName);
+            return getLoginPage(model);
+        }
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSMEETINGURL"),
+                "userName", userName, "session", session, "connection", connection, "peerType", peerType));
+        return "meeting";
+    }
     @RequestMapping(value = "/create-account-page", method = RequestMethod.GET)
     public String getCreateAccount(ModelMap model) {
-        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL")));
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSHOMEURL")));
         return "create-account";
     }
     @RequestMapping(value = "/login-page", method = RequestMethod.GET)
     public String getLoginPage(ModelMap model) {
-        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSURL")));
+        model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSHOMEURL")));
         return "login";
     }
 }

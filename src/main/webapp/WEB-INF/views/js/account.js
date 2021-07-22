@@ -146,7 +146,7 @@ const loadList = (ele) => {
             ajaxUrl.success = function(data) {
                 console.log(data);
                 let list = $(".info > .list");
-                data["friends"].forEach(item => {list.append(getListItem(friends, item))});
+                data["friends"].forEach(item => {list.append(getListItem(friends, item.connection))});
             };
             break;
         case(connectionRequest):
@@ -155,7 +155,7 @@ const loadList = (ele) => {
             ajaxUrl.success = function(data) {
                 console.log(data);
                 let list = $(".info > .list");
-                data["connection-requests"].forEach(item => {list.append(getListItem(connectionRequest, item))});
+                data["connection-requests"].forEach(item => {list.append(getListItem(connectionRequest, item.connection))});
             };
             break;
         case(pendingInvitations):
@@ -164,7 +164,7 @@ const loadList = (ele) => {
             ajaxUrl.success = function(data) {
                 console.log(data);
                 let list = $(".info > .list");
-                data["pending-invitations"].forEach(item => {list.append(getListItem(pendingInvitations, item))});
+                data["pending-invitations"].forEach(item => {list.append(getListItem(pendingInvitations, item.connection))});
             };
             break;
         case(groupRequests):
@@ -173,7 +173,7 @@ const loadList = (ele) => {
             ajaxUrl.success = function(data) {
                 console.log(data);
                 let list = $(".info > .list");
-                data["user-group-requests"].forEach(item => {list.append(getListItem(groupRequests, item))});
+                data["user-group-requests"].forEach(item => {list.append(getListItem(groupRequests, item.groupName))});
             };
             break;
     }
@@ -209,6 +209,5 @@ const loadAccount = (ele) => {
 };
 
 $(document).ready(() => {
-    openWsSession();
     loadAccount({});
 });

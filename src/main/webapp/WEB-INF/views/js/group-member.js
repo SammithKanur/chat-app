@@ -34,7 +34,7 @@ const loadList = (ele) => {
             ajaxUrl.success = function(data) {
                 console.log(data);
                 data["group-members"].forEach(item => {
-                    $(".info > .list").append(getMemberListItem(item));
+                    $(".info > .list").append(getMemberListItem(item.userName));
                 });
             };
             break;
@@ -44,7 +44,7 @@ const loadList = (ele) => {
             ajaxUrl.success = function(data) {
                 console.log(data);
                 data["group-pending-invitations"].forEach(item => {
-                    $(".info > .list").append(getPendingRequestItem(item));
+                    $(".info > .list").append(getPendingRequestItem(item.userName));
                 });
             };
             break;
@@ -72,7 +72,7 @@ const addMember = (ele) => {
         url: URL + "/user/request",
         type:"POST",
         data:JSON.stringify({type:"group", subtype:"member-add", validUserName:userName, session:session,
-            groupName:groupName, userName:member, status:1}),
+            groupName:groupName, userName:member, status:1, inMeeting:0}),
         beforeSend:beforeSend,
         success:function(data) {
             console.log(data);
@@ -82,7 +82,6 @@ const addMember = (ele) => {
     });
 };
 $(document).ready(() => {
-    openWsSession();
     loadList({innerText:members});
 });
 

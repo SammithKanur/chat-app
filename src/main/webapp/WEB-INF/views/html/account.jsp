@@ -31,6 +31,7 @@
 <div class="content">
     <div class="user-dropdown" onmouseout="hideDropDown(this)" onmouseover="showDropDown(this)">
         <ul>
+            <li onclick="getHome(this)">Home</li>
             <li onclick="logout(this)">Logout</li>
         </ul>
     </div>

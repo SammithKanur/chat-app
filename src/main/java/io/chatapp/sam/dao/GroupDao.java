@@ -23,8 +23,8 @@ public class GroupDao {
     private static final String dbPassword = (String)properties.get("password");
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     public void insert(Group group) throws Exception {
-        String query = String.format("INSERT INTO `groups` VALUES('%s', '%s', '%d')", group.getGroupName(),
-                group.getUserName(), group.getStatus());
+        String query = String.format("INSERT INTO `groups` VALUES('%s', '%s', '%d', '%d')", group.getGroupName(),
+                group.getUserName(), group.getStatus(), group.getInMeeting());
         logger.info(query);
         Connection conn = null;
         Statement stmt = null;
@@ -144,20 +144,23 @@ public class GroupDao {
         logger.info("{}", status);
         return status;
     }
-    public List<String> findUserByGroup(String groupName, Integer status) throws Exception {
-        String query = String.format("SELECT userName FROM `groups` WHERE groupName='%s' AND status='%d'", groupName,
+    public List<Group> findUserByGroup(String groupName, Integer status) throws Exception {
+        String query = String.format("SELECT userName, inMeeting FROM `groups` WHERE groupName='%s' AND status='%d'", groupName,
                 status);
         logger.info(query);
         Connection conn = null;
         Statement stmt = null;
-        List<String> list = new LinkedList<>();
+        List<Group> list = new LinkedList<>();
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
-                list.add(rs.getString("userName"));
+                Group group = new Group();
+                group.setInMeeting(rs.getInt("inMeeting"));
+                group.setUserName(rs.getString("userName"));
+                list.add(group);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -173,19 +176,25 @@ public class GroupDao {
         }
         return list;
     }
-    public List<String> findGroupByUser(String userName, Integer status) throws Exception {
-        String query = String.format("SELECT groupName FROM `groups` WHERE userName='%s' AND status='%d'", userName, status);
+    public List<Group> findGroupByUser(String userName, Integer status) throws Exception {
+        String query = String.format("WITH `activeMembersCount` AS (SELECT `groupName` AS `gn`, COUNT(*) AS `members` FROM " +
+                "`groups` WHERE `inMeeting`='1' GROUP BY `groupName`) SELECT `groupName`, COALESCE(`members`, 0) AS `members` " +
+                "FROM `groups` LEFT JOIN `activeMembersCount` ON `groupName`=`gn` WHERE `userName`='%s' AND `status`='%d'",
+                userName, status);
         logger.info(query);
         Connection conn = null;
         Statement stmt = null;
-        List<String> list = new LinkedList<>();
+        List<Group> list = new LinkedList<>();
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(url, dbUserName, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
-                list.add(rs.getString("groupName"));
+                Group group = new Group();
+                group.setGroupName(rs.getString("groupName"));;
+                group.setInMeeting(rs.getInt("members"));
+                list.add(group);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -200,5 +209,80 @@ public class GroupDao {
             }
         }
         return list;
+    }
+    public void setinMeeting(String groupName, String userName, Integer inMeeting) throws Exception {
+        String query = String.format("UPDATE `groups` SET inMeeting='%d' WHERE groupName='%s' AND userName='%s'",
+                inMeeting, groupName, userName);
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+        } catch(Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+                if(conn != null) conn.close();
+                if(stmt != null) stmt.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
+        }
+    }
+    public void setinMeeting(String userName, Integer inMeeting) throws Exception {
+        String query = String.format("UPDATE `groups` SET inMeeting='%d' WHERE userName='%s'",
+                inMeeting, userName);
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+        } catch(Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+                if(conn != null) conn.close();
+                if(stmt != null) stmt.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
+        }
+    }
+    public Integer getinMeeting(String groupName) throws Exception {
+        String query = String.format("SELECT COUNT(*) AS `count` FROM `groups` WHERE groupName='%s' AND inMeeting='1'", groupName);
+        logger.info(query);
+        Connection conn = null;
+        Statement stmt = null;
+        int count = 0;
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                count = rs.getInt("count");
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+                if(conn != null) conn.close();
+                if(stmt != null) stmt.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
+        }
+        logger.info("{}", count);
+        return count;
     }
 }

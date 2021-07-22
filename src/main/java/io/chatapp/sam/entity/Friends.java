@@ -10,6 +10,15 @@ public class Friends {
     @Id
     private String connection;
     private Integer status;
+    private Integer calling;
+
+    public void setCalling(Integer calling) {
+        this.calling = calling;
+    }
+
+    public Integer getCalling() {
+        return calling;
+    }
 
     public Integer getStatus() {
         return status;

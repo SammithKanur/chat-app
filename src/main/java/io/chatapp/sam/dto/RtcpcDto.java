@@ -3,14 +3,14 @@ package io.chatapp.sam.dto;
 public class RtcpcDto {
     private String type;
     private String subtype;
-    private Object paylpad;
+    private Object payload;
     private String peer;
     private String sender;
 
     public RtcpcDto(String type, String subtype, Object payload, String peer, String sender) {
         this.type = type;
         this.subtype = subtype;
-        this.paylpad = payload;
+        this.payload = payload;
         this.peer = peer;
         this.sender = sender;
     }
@@ -22,12 +22,12 @@ public class RtcpcDto {
         return sender;
     }
 
-    public void setPaylpad(Object paylpad) {
-        this.paylpad = paylpad;
+    public Object getPayload() {
+        return payload;
     }
 
-    public Object getPaylpad() {
-        return paylpad;
+    public void setPayload(Object payload) {
+        this.payload = payload;
     }
 
     public String getSubtype() {
