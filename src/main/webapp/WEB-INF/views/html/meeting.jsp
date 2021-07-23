@@ -34,6 +34,10 @@
             <li onclick="logout(this)">Logout</li>
         </ul>
     </div>
+    <div class="video-streams">
+        <video class="user-stream" controls="false" autoplay></video>
+        <video class="peer-stream" controls="false" autoplay></video>
+    </div>
 </div>
 <div class="footer">Copyright &copy 2021 Sammith K A. All rights reserved </div>
 <script>
@@ -43,6 +47,7 @@
     const URL = "${URL}";
     const WSURL = "${WSURL}";
     const peerType = "${peerType}";
+    const sendRtcOffer = "${sendRtcOffer}"
 </script>
 </body>
 </html>

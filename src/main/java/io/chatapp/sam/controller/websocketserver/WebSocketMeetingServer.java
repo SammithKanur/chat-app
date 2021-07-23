@@ -87,5 +87,10 @@ public class WebSocketMeetingServer implements Controller{
     public static String getWsPeerType(String userName) {
         return (String)wsUser.get(userName).get("peerType");
     }
+    public static void sendMessage(String peer, String sender, String message) throws Exception {
+        if(hasWsSession(peer)) {
+            getWsSession(peer).getBasicRemote().sendText(message);
+        }
+    }
 }
 

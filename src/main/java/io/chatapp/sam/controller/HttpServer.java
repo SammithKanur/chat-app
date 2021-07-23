@@ -149,13 +149,15 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
     }
     @RequestMapping(value = "/meeting", method = RequestMethod.GET)
     public String getMeetingPage(@RequestParam String userName, @RequestParam String session,
-                                 @RequestParam String connection, @RequestParam String peerType, ModelMap model) {
+                                 @RequestParam String connection, @RequestParam String peerType,
+                                 @RequestParam String sendRtcOffer, ModelMap model) {
         if(!isSessionValid(userName, session)) {
             removeHttpSession(userName);
             return getLoginPage(model);
         }
         model.addAllAttributes(Map.of("URL", properties.get("URL"), "WSURL", properties.get("WSMEETINGURL"),
-                "userName", userName, "session", session, "connection", connection, "peerType", peerType));
+                "userName", userName, "session", session, "connection", connection,
+                "peerType", peerType, "sendRtcOffer", sendRtcOffer));
         return "meeting";
     }
     @RequestMapping(value = "/create-account-page", method = RequestMethod.GET)

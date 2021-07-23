@@ -68,6 +68,17 @@ body {
     grid-area: content;
     background-color: #FFF5EB;
 }
+.video-streams {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.video-streams > video {
+    width: 30%;
+    height: 40%;
+}
 .footer {
     grid-area: "footer";
     font-size: 0.8rem;

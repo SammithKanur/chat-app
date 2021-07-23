@@ -8,10 +8,12 @@ const showBuffer = () => {
 };
 const stopRingPhone = (ele) => {
     ele.style.animation = "none";
+    ele.setAttribute("sendRtcOffer", "no")
 }
 const ringPhone = (ele) => {
     ele.style["animation"] = "shake 0.5s";
     ele.style["animation-iteration-count"] = "infinite";
+    ele.setAttribute("sendRtcOffer", "yes")
 };
 const hideBuffer = () => {
     $(".buffer").remove();

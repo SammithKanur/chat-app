@@ -101,18 +101,19 @@ const getGroupListItem = (connectionName) => {
          `onclick="loadMesages(this)" peerType="group">${connectionName}` +
         `<div class="fa fa-cog" onclick="getGroupSettings(this)"` +
         `connectionName="${connectionName}"></div><div class="fa fa-phone" onclick="startMeeting(this)" ` +
-        `connection="${connectionName}"></div></div>`;
+        `connection="${connectionName}" sendRtcOffer="no"></div></div>`;
 };
 const getFriendListItem = (connectionName) => {
     return `<div connectionType="${friendConnectionType}" connection="${connectionName}" ` +
         `onclick="loadMesages(this)" peerType="friend"> ` +
         `${connectionName} <div class="fa fa-phone" onclick="startMeeting(this)" ` +
-        `connection="${connectionName}"></div></div>`;
+        `connection="${connectionName}" sendRtcOffer="no"></div></div>`;
 };
 const startMeeting = (ele) => {
     event.stopPropagation();
     let connection = ele.getAttribute("connection");
     let peerType = ele.parentElement.getAttribute("peerType");
+    let sendRtcOffer = ele.getAttribute("sendRtcOffer");
     let ajaxUrl = {
         url:URL + "/user/request",
         type:"POST",
@@ -120,7 +121,7 @@ const startMeeting = (ele) => {
         success: function(data) {
             console.log(data);
             window.location = URL + `/user/meeting?userName=${userName}&session=${session}&connection=${connection}` +
-            `&peerType=${peerType}`;
+            `&peerType=${peerType}&sendRtcOffer=${sendRtcOffer}`;
         },
         error: function(data) {
             console.log(data);
