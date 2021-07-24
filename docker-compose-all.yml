@@ -13,7 +13,7 @@ services:
     env_file:
       - ./chat-app-server/chat-app.env
     ports:
-      - "8080:8080"
+      - "8443:8443"
     volumes:
       - ./chat-app-server/war:/tomcat/apache-tomcat-9.0.50/webapps
       - ./src/main/resources:/chat-app-resources

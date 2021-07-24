@@ -92,10 +92,15 @@ const recvRtcAnswer = (msg) => {
     console.log(peerConnection);
 };
 const recvRtcIcecandidate = (msg) => {
-    alert("ice candidate recieved");
+    console.log("ice candidate recieved");
     let peer = msg.sender;
     let icecandidate = msg.payload;
     peerConnection.addIceCandidate(new RTCIceCandidate(icecandidate));
+};
+const listMediaDevices = () => {
+    navigator.mediaDevices.enumerateDevices().then(devices => {
+        console.log(devices);
+    });
 };
 $(document).ready(async () => {
     openWsSession();

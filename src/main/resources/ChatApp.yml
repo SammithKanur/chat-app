@@ -1,11 +1,11 @@
 prod:
   server:
     URL:
-      http://sammith-projects.tk:8080/chat-app
+      https://sammith-projects.tk:8443/chat-app
     WSHOMEURL:
-      ws://sammith-projects.tk:8080/chat-app/websocket-home-server
+      wss://sammith-projects.tk:8443/chat-app/websocket-home-server
     WSMEETINGURL:
-      ws://sammith-projects.tk:8080/chat-app/websocket-meeting-server
+      wss://sammith-projects.tk:8443/chat-app/websocket-meeting-server
   mysql:
     url: "jdbc:mysql://mysql:3306/chatApp"
     script-url: "jdbc:mysql://localhost:8081"
