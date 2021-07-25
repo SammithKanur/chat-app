@@ -22,9 +22,18 @@
     <script src="<c:url value="${pageContext.getAttribute('jsUrl')}/profile.js?time=${pageContext.getAttribute('date')}"/>"></script>
 </head>
 <body>
+<div class="buffer">
+    <div class="loader"></div>
+</div>
+<div class="response-message">
+    <div>
+        <i class="fa fa-window-close" onclick="hideResponseMessage(this)"></i>
+        <h2></h2>
+    </div>
+</div>
 <div class="header">
     <div class="user">
-        <i class="fa fa-user fa-3x" onmouseover="showDropDown(this)" onmouseout="hideDropDown(this)"></i>
+        <i class="fa fa-user" onmouseover="showDropDown(this)" onmouseout="hideDropDown(this)"></i>
     </div>
 </div>
 <div class="content">
@@ -45,7 +54,8 @@
         </div>
     </div>
 </div>
-<div class="footer">Copyright &copy 2021 Sammith K A. All rights reserved </div>
+<div class="footer"><p>Copyright &copy 2021 Sammith K A. All rights reserved</p> </div>
+</body>
 <script>
     const userName = "${userName}";
     const session = "${session}";
@@ -53,5 +63,4 @@
     const URL = "${URL}";
     const WSURL = "${WSURL}";
 </script>
-</body>
 </html>

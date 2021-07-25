@@ -22,6 +22,15 @@
     <script src="<c:url value="${pageContext.getAttribute('jsUrl')}/meeting.js?time=${pageContext.getAttribute('date')}"/>"></script>
 </head>
 <body>
+<div class="buffer">
+    <div class="loader"></div>
+</div>
+<div class="response-message">
+    <div>
+        <i class="fa fa-window-close" onclick="hideResponseMessage(this)"></i>
+        <h2></h2>
+    </div>
+</div>
 <div class="header">
     <div class="user">
         <i class="fa fa-user fa-3x" onmouseover="showDropDown(this)" onmouseout="hideDropDown(this)"></i>

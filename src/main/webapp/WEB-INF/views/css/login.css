@@ -1,9 +1,12 @@
+:root {
+    font-size: 1vw;
+}
 * {
     box-sizing: border-box;
-}
-body {
     padding: 0;
     margin: 0;
+}
+body {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -17,23 +20,28 @@ body {
     background-color: black;
     color: white;
     text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .content {
     position: relative;
     grid-area: content;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 200px 1fr;
+    grid-template-rows: 15% 1fr;
     grid-template-areas: "heading"
                          "form";
     background-color: rgb(96, 231, 220);
 }
 .content > .heading {
-    text-align: center;
     grid-area: heading;
-    font-size: 50px;
-    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content > .heading > h2 {
+    font-size: 3rem;
 }
 .content > .form {
     grid-area: form;
@@ -42,65 +50,57 @@ body {
     justify-content: center;
 }
 .login-form {
-    margin: 20px 0 0 0;
     background-color: #F2FCFC;
     height: 75%;
     width: 55%;
-    box-shadow: 10px 10px 5px #505152;
-    border: 3px solid black;
-    border-radius: 10px;
+    box-shadow: 2rem 2rem 1rem #505152;
+    border: 0.2rem solid black;
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
 }
+.login-form > h1 {
+    margin: 2%;
+    font-size: 2rem;
+}
 input, input:focus {
-    font-size: 0.8rem;
+    flex: 0 1 5%;
+    font-size: 1rem;
     outline: none;
     border: none;
     width: 50%;
-    height: 5%;
-    margin: 10px;
+    margin: 2%;
     background-color: #F2FCFC;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 0.2rem solid #ccc;
 }
 #buttons {
+    flex: 0 1 1.5%;
     width: 50%;
     display: flex;
-    padding: 0;
-    margin: 0;
 }
 #login, #create {
-    font-size: 15px;
+    flex: 0 1 auto;
+    padding: 5px;
+    font-size: 1rem;
     background-color: #0245A3;
     color: white;
-    margin: 5px 0;
-    height: 100%;
-    border-radius: 20px;
-    flex: 0 0 auto;
+    margin: 2% 0;
+    border-radius: 2px;
 }
 #login {
-    width: 20%;
     margin-right: auto;
 }
 #create {
     text-decoration: none;
-    display: inline-block;
-    padding: 0 10px;
-    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #login:hover, #create:hover {
     cursor: pointer;
     background-color: black;
     color: white;
-}
-.message {
-    display: none;
-    color: red;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    top: 150px;
-    z-index:2;
 }

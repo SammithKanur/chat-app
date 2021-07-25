@@ -23,13 +23,13 @@ const createGroup = (ele) => {
         beforeSend: beforeSend,
         success: function(data){
             console.log(data);
-            $(".popup > .create-group > p").text(data);
+            showResponseMessage(data, "lawngreen");
             loadList(JSON.stringify({type:"group", subtype:"user-group-list", validUserName:userName, session:session,
                 userName:userName}), "groups");
         },
         error: function(data) {
             console.log(data);
-            $(".popup > .create-group > p").text(data.responseText);
+            showResponseMessage(data.responseText, "red");
         },
         complete:onComplete,
     });

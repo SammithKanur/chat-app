@@ -6,10 +6,6 @@ const getUserName = () => {
 const getPassword = () => {
     return $("input[name='password']").val();
 };
-const showError = (msg) => {
-    $(".message").show();
-    $(".message > h2").text(msg)
-};
 const handleLogin = (e) => {
     event.preventDefault();
     userName = getUserName();
@@ -24,7 +20,8 @@ const handleLogin = (e) => {
             window.location = URL + `/user/home?userName=${userName}&session=${data}`;
         },
         error: function(data) {
-            showError(data.responseText);
+            console.log(data);
+            showResponseMessage(data.responseText, "red");
         },
         complete:onComplete,
     });

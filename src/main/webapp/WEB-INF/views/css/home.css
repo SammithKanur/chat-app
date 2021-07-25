@@ -1,6 +1,7 @@
 :root {
-    --sidebar-width: 250;
+    --sidebar-width: 0;
     --chat-height: 1000;
+    font-size: 1vw;
 }
 * {
     box-sizing: border-box;
@@ -16,7 +17,7 @@ body {
     display: grid;
     width: 100%;
     height: 100vh;
-    grid-template-columns: min(max(250px, calc(var(--sidebar-width) * 1px)), 500px) 1fr;
+    grid-template-columns: min(max(15vw, calc(var(--sidebar-width) * 1px)), 50vw) 1fr;
     grid-template-rows: 50px 1fr 50px;
     grid-template-areas: "header header"
                          "sidebar content"
@@ -31,37 +32,39 @@ body {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 10;
-
 }
 .popup > .create-group {
     flex: 0 1 15%;
     height: 40%;
-    background-color: white;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items:  center;
     flex-direction: column;
-    border-radius: 2px;
+    border-radius: 10px;
     position: relative;
 }
-.popup > .create-group > div {
+.popup > .create-group > .fa-window-close {
     position: absolute;
-    color: black;
-    top: 0;
-    right:0;
+    color: white;
+    top: 7px;
+    right:5px;
 }
-.popup > .create-group > div:hover {
-    color: rgba(0, 0, 0, 0.6);
+.popup > .create-group > .fa-window-close:hover {
+    color: #d4cccc;
+    cursor: pointer;
 }
 .popup > .create-group > input {
     flex: 0 0 10%;
     display: block;
     width: 90%;
     margin: 20% 0;
-    padding: 0 10px;
+    border: none;
+    outline: none;
+    padding: 0 5px;
 }
 .popup > .create-group > button {
-    padding: 10px;
+    padding: 5px;
     background-color: rgba(7, 84, 199, 0.87);
     color: white;
     border-radius: 5px;
@@ -94,9 +97,9 @@ body {
 }
 .app-name {
     height: 100%;
-    width: min(max(250px, calc(var(--sidebar-width) * 1px)), 500px);
+    width: min(max(15vw, calc(var(--sidebar-width) * 1px)), 50vw);
     color: #FFF5EB;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: 1000;
     display: flex;
     align-items: center;
@@ -107,15 +110,15 @@ body {
     margin-right: auto;
     width: 40%;
     height: 75%;
-    border-radius: 10px;
-    padding: 0 10px;
+    border-radius: 20px;
+    padding: 0 0.8%;
     outline: none;
-    font-size: 20px;
+    font-size: 1rem;
 }
 .user {
     background-color: white;
-    width: 3%;
-    height: 100%;
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
     border-radius: 50%;
     display: flex;
@@ -127,12 +130,13 @@ body {
     background-color: #ccc;
 }
 .user-dropdown {
-    background-color: lightblue;
+    background-color: skyblue;
     color: black;
     position: fixed;
     display: none;
     right: 10px;
     font-size: 20px;
+    border-radius: 0 0 10px 10px;
 }
 .user-dropdown > ul {
     list-style: none;
@@ -140,7 +144,7 @@ body {
     text-align: center;
 }
 .user-dropdown > ul > li {
-    padding: 10px;
+    padding: 5px;
     border-bottom: 2px solid black;
 }
 .user-dropdown > ul > li:hover {
@@ -149,6 +153,7 @@ body {
     color: white;
 }
 .fa-user {
+    font-size: 50px;
     color: rgba(7, 84, 199, 0.87);
 }
 .sidebar {
@@ -175,6 +180,9 @@ body {
 .friends-list > .heading {
     grid-area: friends-heading;
 }
+.friends-list > .heading > h3, .groups-list > .heading > h3 {
+    font-size: 1.2rem;
+}
 .friends-list > .list {
     grid-area: friends-list;
     overflow-y: auto;
@@ -184,17 +192,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
     border-top: 2px solid black;
     border-bottom: 5px solid black;
 }
 .friends-list > .list > div, .groups-list > .list > div {
-    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     border-bottom: 2px solid black;
+    font-size: 1rem;
 }
 .friends-list > .list > div:hover, .groups-list > .list > div:hover {
     color: white;
@@ -240,7 +247,7 @@ body {
     background-color: #FFF5EB;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr min(500px, max(200px, calc(100vh - 90px - (var(--chat-height) * 1px)))) 40px;
+    grid-template-rows: 1fr min(60vh, max(25vh, calc(100vh - 90px - (var(--chat-height) * 1px)))) 40px;
     grid-area: "message-area"
     "chat-area"
     "button-area";
@@ -288,7 +295,7 @@ body {
 }
 .chat-area {
     background-color: #444444;
-    font-size: 15px;
+    font-size: 1rem;
     outline-width: 0;
     padding: 10px;
     display: block;
@@ -308,9 +315,9 @@ body {
 #send-message {
     display: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1rem;
     flex: 0 0 auto;
-    padding: 0 15px;
+    padding: 0 1%;
     height: 80%;
     margin-right: 10px;
     outline: none;
@@ -320,13 +327,14 @@ body {
     color:white;
 }
 .footer {
-    overflow: hidden;
     font-size: 0.8rem;
     grid-area: footer;
     background-color: black;
     color: white;
     text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }

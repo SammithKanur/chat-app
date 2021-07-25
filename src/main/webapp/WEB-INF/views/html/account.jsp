@@ -22,6 +22,15 @@
     <script src="<c:url value="${pageContext.getAttribute('jsUrl')}/account.js?time=${pageContext.getAttribute('date')}"/>"></script>
 </head>
 <body>
+<div class="buffer">
+    <div class="loader"></div>
+</div>
+<div class="response-message">
+    <div>
+        <i class="fa fa-window-close" onclick="hideResponseMessage(this)"></i>
+        <h2></h2>
+    </div>
+</div>
 <div class="header">
     <div class="fa fa-list fa-2x" onmouseover="showList(this)" onmouseout="hideList(this)"></div>
     <div class="user">
@@ -50,8 +59,8 @@
             <div class="name">Display name: </div>
             <div class="followers">Followers:</div>
             <div class="groups">Groups:</div>
-            <div class="password">Password: <input type="name" name="password"> <button onclick="updatePassword(this)">
-                Update password</button></div>
+            <div class="password">Password: <input type="name" name="password" placeholder="new password">
+                <button onclick="updatePassword(this)">Update password</button></div>
             <button class="remove" onclick="removeAccount(this)">Remove Account</button>
         </div>
         <div class="info">
@@ -62,12 +71,12 @@
     </div>
 
 </div>
-<div class="footer">Copyright &copy 2021 Sammith K A. All rights reserved </div>
+<div class="footer"><p>Copyright &copy 2021 Sammith K A. All rights reserved</p> </div>
+</body>
 <script>
     const userName = "${userName}";
     const session = "${session}";
     const URL = "${URL}";
     const WSURL = "${WSURL}";
 </script>
-</body>
 </html>

@@ -1,3 +1,6 @@
+:root {
+    font-size: 1vw;
+}
 * {
     box-sizing: border-box;
     padding: 0;
@@ -21,35 +24,35 @@ body {
     position: relative;
 }
 .user {
-    position: absolute;
-    right: 0;
     background-color: white;
-    width: 3%;
-    height: 100%;
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    position: absolute;
+    right: 0;
 }
 .user:hover {
     cursor: pointer;
     background-color: #ccc;
 }
 .user-dropdown {
-    background-color: lightblue;
+    background-color: skyblue;
     color: black;
     position: fixed;
     display: none;
     width: 100px;
     right: 10px;
     font-size: 20px;
+    border-radius: 0 0 5px 5px;
 }
 .user-dropdown > ul {
     list-style: none;
     display: inline;
     text-align: center;
-    border-radius: 2px;
 }
 .user-dropdown > ul > li {
     padding: 2px;
@@ -62,6 +65,7 @@ body {
     color: white;
 }
 .fa-user {
+    font-size: 50px;
     color: rgba(7, 84, 199, 0.87);
 }
 .content {
@@ -75,30 +79,29 @@ body {
 }
 .heading {
     grid-area: "heading";
-    font-size: 100px;
-    text-align: center;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .profile {
-    display: none;
+    /* display: none; */
     grid-area: "profile";
     padding-left: 15%;
 }
 .profile > div {
-    font-size: 30px;
+    font-size: 1.8rem;
     margin: 0 0 20px;
 }
 .profile > .button-area {
-    display: flex;
     width: 100%;
-    height: 50px;
 }
 .profile > .button-area > button {
-    height: 50px;
-    padding: 0 20px;
+    padding: 5px;
     background-color: rgba(7, 84, 199, 0.87);
     color: white;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 1rem;
 }
 .profile > .button-area > .btn2 {
     display: none;
@@ -106,11 +109,12 @@ body {
     margin: 0 0 0 20px;
 }
 .footer {
-    grid-area: "footer";
     font-size: 0.8rem;
     grid-area: footer;
     background-color: black;
     color: white;
     text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

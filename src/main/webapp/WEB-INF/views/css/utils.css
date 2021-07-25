@@ -1,13 +1,38 @@
-.buffer {
+.buffer, .response-message {
     position: fixed;
     overflow:hidden;
     height: 100vh;
     width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 15;
+}
+.response-message {
+    z-index: 12;
+}
+.response-message > div {
+    width: 40%;
+    height: 20vh;
+    position: relative;
+    background-color: black;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: red;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.1);
-    z-index: 15;
+}
+.response-message > div > .fa-window-close {
+    position: absolute;
+    color: white;
+    top: 2px;
+    right: 2px;
+}
+.response-message > div > .fa-window-close:hover {
+    cursor: pointer;
+    color: #dbd5d5;
 }
 .loader,
 .loader:after {

@@ -178,7 +178,7 @@ const loadList = (ele) => {
             break;
     }
     $.ajax(ajaxUrl);
-    $(".info").show();
+    $(".info").css("display", "flex");
 };
 const loadAccount = (ele) => {
     $(".info").hide();

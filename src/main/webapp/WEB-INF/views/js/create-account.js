@@ -20,10 +20,10 @@ const handleCreate = (e) => {
         data: JSON.stringify({userName:userName, password:password, groups:0, followers:0}),
         beforeSend:beforeSend,
         success: function(data) {
-            showMessage(data, "black");
+            showResponseMessage(data, "lawngreen");
         },
         error: function(data) {
-            showMessage(data.responseText, "red");
+            showResponseMessage(data.responseText, "red");
         },
         complete:onComplete,
     });

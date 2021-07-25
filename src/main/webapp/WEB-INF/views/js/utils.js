@@ -3,8 +3,18 @@ const getHome = (ele) => {
     window.location = URL + `/user/home?userName=${userName}&session=${session}`;
 };
 const showBuffer = () => {
-    let loader = '<div class="buffer"><div class="loader"></div></div>';
-    $("body").append(loader);
+    $(".buffer").css("display", "flex");
+};
+const hideBuffer = () => {
+    $(".buffer").css("display", "none");
+};
+const showResponseMessage = (msg, color) => {
+    $(".response-message > div > h2").text(msg);
+    $(".response-message > div").css("color", color);
+    $(".response-message").css("display", "flex");
+};
+const hideResponseMessage = (ele) => {
+    $(".response-message").css("display", "none");
 };
 const stopRingPhone = (ele) => {
     ele.style.animation = "none";
@@ -14,9 +24,6 @@ const ringPhone = (ele) => {
     ele.style["animation"] = "shake 0.5s";
     ele.style["animation-iteration-count"] = "infinite";
     ele.setAttribute("sendRtcOffer", "yes")
-};
-const hideBuffer = () => {
-    $(".buffer").remove();
 };
 const beforeSend = (xhr) => {
     showBuffer();

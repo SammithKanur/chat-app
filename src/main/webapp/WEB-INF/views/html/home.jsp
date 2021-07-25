@@ -24,10 +24,18 @@
 <body>
 <div class="popup">
     <div class="create-group">
-        <p style="text-align:center"></p>
-        <div><i class="fa fa-window-close" onclick="closeGroupForm(this)"></i></div>
+        <i class="fa fa-window-close" onclick="closeGroupForm(this)"></i>
         <input type="name" placeholder="Enter group name"/>
         <button onclick="createGroup(this)">Create Group</button>
+    </div>
+</div>
+<div class="buffer">
+    <div class="loader"></div>
+</div>
+<div class="response-message">
+    <div>
+        <i class="fa fa-window-close" onclick="hideResponseMessage(this)"></i>
+        <h2></h2>
     </div>
 </div>
 <div class="predictive-list">
@@ -70,11 +78,11 @@
     </div>
 </div>
 <div class="footer">Copyright &copy 2021 Sammith K A. All rights reserved </div>
+</body>
 <script>
     let session = "${session}";
     let userName = "${userName}";
     const URL = "${URL}";
     const WSURL = "${WSURL}";
 </script>
-</body>
 </html>

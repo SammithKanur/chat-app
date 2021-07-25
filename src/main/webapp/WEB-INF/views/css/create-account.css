@@ -1,9 +1,12 @@
+:root {
+    font-size: 1vw;
+}
 * {
     box-sizing: border-box;
-}
-body {
     padding: 0;
     margin: 0;
+}
+body {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -17,10 +20,11 @@ body {
     background-color: black;
     color: white;
     text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .content {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,8 +33,8 @@ body {
     background-color: rgb(96, 231, 220);
 }
 .content > .create-account {
-    box-shadow: 10px 10px 5px #505152;
-    border: 3px solid black;
+    box-shadow: 2rem 2rem 1rem #505152;
+    border: 0.2rem solid black;
     width: 55%;
     height: 60%;
     display: flex;
@@ -38,45 +42,40 @@ body {
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 2rem;
     background-color: #F2FCFC;
 }
 input, input:focus {
-    font-size: 0.8rem;
+    flex: 0 1 5%;
+    width: 50%;
+    font-size: 1rem;
     outline: none;
     border: none;
-    width: 50%;
-    height: 5%;
-    margin: 10px;
+    margin: 2%;
     background-color: #F2FCFC;
     border-bottom: 2px solid #ccc;
 }
+.create-account > h1 {
+    margin: 2%;
+    font-size: 2rem;
+}
 #buttons {
+    flex: 0 1 8%;
     width: 50%;
     display: flex;
     justify-content: center;
-    padding: 0;
-    margin: 0;
 }
 #create {
-    padding: 0 5px;
-    font-size: 15px;
+    font-size: 1rem;
+    flex: 0 1 auto;
     background-color: #0245A3;
     color: white;
-    margin: 5px 0;
     height: 100%;
-    border-radius: 50px;
-    flex: 0 0 auto;
+    padding: 2%;
+    border-radius: 10%;
 }
 #create:hover {
     cursor: pointer;
     background-color: black;
     color: white;
-}
-.message {
-    display: none;
-    text-align: center;
-    position: absolute;
-    top: 110px;
-    width: 100%;
 }
