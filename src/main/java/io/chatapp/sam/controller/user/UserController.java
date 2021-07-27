@@ -25,9 +25,9 @@ public class UserController implements Controller {
     private static UserService userService = new UserService();
     private static ChatService chatService = new ChatService();
     private static SearchService searchService = new SearchService();
-    public ResponseEntity<?> request(String subtype, String message) throws Exception {
+    public Object request(String subtype, String message) throws Exception {
         UserDto userDto = Decoders.getUserDto(message);
-        ResponseEntity<?> result = new ResponseEntity<>("not processed", textHttpHeader, HttpStatus.BAD_REQUEST);
+        Object result = new ResponseEntity<>("not processed", textHttpHeader, HttpStatus.BAD_REQUEST);
         switch(subtype) {
             case("home"):
                 result = new ResponseEntity<>(getHome(userDto), jsonHttpHeader, HttpStatus.OK);
@@ -43,6 +43,9 @@ public class UserController implements Controller {
                 break;
             case("logout"):
                 result = new ResponseEntity<>(userLogout(userDto), textHttpHeader, HttpStatus.OK);
+                break;
+            case("prediction-list"):
+                result = getPredictionList(userDto);
                 break;
         }
         return result;
@@ -73,5 +76,10 @@ public class UserController implements Controller {
     public String userLogout(UserDto userDto) throws Exception {
         removeHttpSession(userDto.getUserName());
         return "success";
+    }
+    public String getPredictionList(UserDto userDto) throws Exception {
+        if(userDto.getUserName() == null)
+            return "{}";
+        return searchService.getUsers(userDto.getUserName());
     }
 }

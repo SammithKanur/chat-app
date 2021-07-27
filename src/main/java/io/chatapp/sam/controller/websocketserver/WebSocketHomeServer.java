@@ -1,12 +1,17 @@
 package io.chatapp.sam.controller.websocketserver;
 
 import io.chatapp.sam.controller.Controller;
+import io.chatapp.sam.controller.user.UserController;
+import io.chatapp.sam.dto.ServerDto;
+import io.chatapp.sam.utils.Decoders;
+import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,6 +36,24 @@ public class WebSocketHomeServer implements Controller{
     @OnMessage
     public void onMessage(Session session, String message) {
         logger.info("Websocketserver message {}", message);
+        ServerDto serverDto = Decoders.getServerDto(message);
+        try {
+            switch(serverDto.getType()) {
+                case("user"):
+                    String result = (String)new UserController().request(serverDto.getSubtype(), message);
+                    sendMessage(Arrays.asList(serverDto.getValidUserName()), String.format("{\"type\":\"user\", " +
+                            "\"subtype\":\"prediction-list\", \"payload\":%s}", result), "");
+                    break;
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            try {
+                sendMessage(Arrays.asList(serverDto.getValidUserName()), String.format("{\"type\":\"user\", " +
+                        "\"subtype\":\"error\", \"payload\":\"%s\"}","error-message"), "");
+            } catch(Exception e0) {
+                e0.printStackTrace();
+            }
+        }
     }
     @OnClose
     public void onClose(Session session) throws Exception{

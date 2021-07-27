@@ -1,4 +1,12 @@
 let ws;
+class SearchList {
+    constructor(list) {
+        this.list = list;
+    }
+    getList(prefix) {
+        return this.list.filter(name => name.startsWith(prefix));
+    }
+};
 const getHome = (ele) => {
     window.location = URL + `/user/home?userName=${userName}&session=${session}`;
 };
@@ -51,6 +59,9 @@ const handleWsMessage = (msg) => {
     console.log(msg);
     msg = JSON.parse(msg);
     switch(msg.type) {
+        case("user"):
+            handleUserMessage(msg);
+            break;
         case("chat-message"):
             handleChatMessage(msg);
             break;
@@ -65,13 +76,13 @@ const handleRtcpcMessage = (msg) => {
             recvPeerNote(msg);
             break;
         case("offer"):
-            recvRtcOffer(msg);
+            peerConnection.recvRtcOffer(msg);
             break;
         case("answer"):
-            recvRtcAnswer(msg);
+            peerConnection.recvRtcAnswer(msg);
             break;
         case("icecandidate"):
-            recvRtcIcecandidate(msg);
+            peerConnection.recvRtcIcecandidate(msg);
             break;
     }
 };

@@ -49,7 +49,7 @@ public class HttpServer implements io.chatapp.sam.controller.Controller {
                     String subtype = serverDto.getSubtype();
                     switch(type) {
                         case("user"):
-                            output.setResult(new UserController().request(subtype, message));
+                            output.setResult((ResponseEntity<?>)new UserController().request(subtype, message));
                             break;
                         case("friend"):
                             output.setResult(new FriendController().request(subtype, message));

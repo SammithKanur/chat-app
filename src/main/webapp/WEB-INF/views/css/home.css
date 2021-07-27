@@ -70,23 +70,28 @@ body {
     border-radius: 5px;
 }
 .predictive-list {
-    border-radius: 2px;
+    display: none;
+    border-radius: 0 0 10px 10px;
     position: fixed;
     top: 50px;
-    left: calc(10px + min(max(250px, calc(var(--sidebar-width) * 1px)), 500px));
-    z-index: 2;
-    border: 2px solid black;
-    display: none;
+    left: calc(10px + min(max(15vw, calc(var(--sidebar-width) * 1px)), 50vw));
+    z-index: 5;
+    width: calc(40% - 10px);
+    max-height: 10vw;
+    background-color: black;
 }
 .predictive-list > .item {
-    text-align: center;
-    padding: 10px 20px 10px 20px;
+    font-size: 1rem;
     height: 40px;
-    border-bottom: 2px solid black;
-    background-color: whitesmoke
+    border-bottom: 2px solid steelblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 .predictive-list > .item:hover {
-    background-color: rgb(243, 224, 190);
+    cursor: pointer;
+    background-color: rgb(27, 9, 9);
 }
 .header {
     grid-area: header;
@@ -181,7 +186,7 @@ body {
     grid-area: friends-heading;
 }
 .friends-list > .heading > h3, .groups-list > .heading > h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 .friends-list > .list {
     grid-area: friends-list;
@@ -201,7 +206,7 @@ body {
     align-items: center;
     height: 40px;
     border-bottom: 2px solid black;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 .friends-list > .list > div:hover, .groups-list > .list > div:hover {
     color: white;

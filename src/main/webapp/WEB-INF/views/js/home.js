@@ -34,6 +34,29 @@ const createGroup = (ele) => {
         complete:onComplete,
     });
 };
+const getPredictionListItem = (user) => {
+    return `<div class="item" userName="${user}" onclick="handlePredictionItemClick(this)">${user}</div>`;
+};
+const handlePredictionItemClick = (ele) => {
+    let user = ele.getAttribute("userName");
+    getProfile({value:user});
+}
+const handleUserMessage = (msg) => {
+    let message = "";
+    switch(msg.subtype) {
+        case("prediction-list"):
+            message = JSON.parse(JSON.stringify(msg.payload));
+            message.hits.hits.forEach(hit => {
+                let user = hit["_source"]["name"];
+                $(".predictive-list").append(getPredictionListItem(user));
+            })
+            break;
+        case("error"):
+            message = msg.payload;
+            console.log(message);
+            break;
+    }
+};
 const getProfile = (ele) => {
     $.ajax({
         url: URL + "/user/request",
@@ -52,12 +75,20 @@ const getProfile = (ele) => {
         complete:onComplete,
     });
 };
+const clearPredictionList = () => {
+    $(".predictive-list").empty();
+};
 const getPredictions = (ele) => {
-    if(event.key === "Enter") {
+    clearPredictionList();
+    if(ele.value.length == 0) {
+        clearPredictionList();
+    } else if(event.key === "Enter") {
         getProfile(ele);
-    }
-    else if(event.which >= 48 && event.which <= 90) {
-        //get predictions
+    } else if((event.which >= 48 && event.which <= 90) || event.keyCode === 8) {
+        $(".predictive-list").css("display", "block");
+        ws.send(JSON.stringify({validUserName:userName, type:"user", subtype:"prediction-list", userName:ele.value}));
+    } else if(event.key === "Escape") {
+        clearPredictionList();
     }
 };
 const mouseMoveHandler = (e) => {

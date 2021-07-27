@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>${friend}'s profile</title>
+    <title>${peerType} meeting</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<c:url value="${pageContext.getAttribute('cssUrl')}/meeting.css?time=${pageContext.getAttribute('date')}"/>" rel="stylesheet" />
@@ -33,7 +33,7 @@
 </div>
 <div class="header">
     <div class="user">
-        <i class="fa fa-user fa-3x" onmouseover="showDropDown(this)" onmouseout="hideDropDown(this)"></i>
+        <i class="fa fa-user" onmouseover="showDropDown(this)" onmouseout="hideDropDown(this)"></i>
     </div>
 </div>
 <div class="content">
@@ -43,10 +43,7 @@
             <li onclick="logout(this)">Logout</li>
         </ul>
     </div>
-    <div class="video-streams">
-        <video class="user-stream" controls="false" autoplay></video>
-        <video class="peer-stream" controls="false" autoplay></video>
-    </div>
+    <div class="video-streams"></div>
 </div>
 <div class="footer">Copyright &copy 2021 Sammith K A. All rights reserved </div>
 <script>

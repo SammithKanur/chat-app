@@ -88,10 +88,11 @@ input, input:focus {
     background-color: #0245A3;
     color: white;
     margin: 2% 0;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 #login {
     margin-right: auto;
+    padding: 5px 3%;
 }
 #create {
     text-decoration: none;

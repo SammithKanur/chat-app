@@ -58,7 +58,7 @@
     </div>
     <div class="info">
         <div class="title">Members</div>
-        <input type="name" name="search" placeholder="search here" autocomplete="off"/>
+        <input type="name" name="search" placeholder="search here" autocomplete="off" onkeyup="infoSearch(this)"/>
         <div class="list">
             <div class="item">
                 <div>yolo</div>

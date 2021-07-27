@@ -97,6 +97,7 @@ body {
     width: 100%;
 }
 .profile > .button-area > button {
+    display: inline-block;
     padding: 5px;
     background-color: rgba(7, 84, 199, 0.87);
     color: white;

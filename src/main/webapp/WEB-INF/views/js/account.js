@@ -9,6 +9,8 @@ const acceptRequest = "Accept";
 const declineRequest = "Decline";
 let groups = 0;
 let followers = 0;
+let searchList = null;
+let curInfo = "";
 const showDropDown = (e) => {
     $(".user-dropdown").show();
 };
@@ -127,6 +129,14 @@ const handleClick = (ele) => {
     }
     $.ajax(ajaxUrl);
 };
+const infoSearch = (ele) => {
+    let prefix = ele.value;
+    if(prefix.length > 0 && event.key === "Enter") {
+        $(".info > .list").empty();
+        let data = searchList.getList(prefix);
+        data.forEach(name => {$(".info > .list").append(getListItem(curInfo, name))});
+    }
+};
 const loadList = (ele) => {
     $(".account").hide();
     $(".info").hide();
@@ -145,7 +155,9 @@ const loadList = (ele) => {
                 session:session, user:userName});
             ajaxUrl.success = function(data) {
                 console.log(data);
+                searchList = new SearchList(data["friends"].map(obj => obj.connection));
                 let list = $(".info > .list");
+                curInfo = friends;
                 data["friends"].forEach(item => {list.append(getListItem(friends, item.connection))});
             };
             break;
@@ -154,7 +166,9 @@ const loadList = (ele) => {
                 session:session, user:userName});
             ajaxUrl.success = function(data) {
                 console.log(data);
+                searchList = new SearchList(data["connection-requests"].map(obj => obj.connection));
                 let list = $(".info > .list");
+                curInfo = connectionRequest;
                 data["connection-requests"].forEach(item => {list.append(getListItem(connectionRequest, item.connection))});
             };
             break;
@@ -163,7 +177,9 @@ const loadList = (ele) => {
                 session:session, user:userName});
             ajaxUrl.success = function(data) {
                 console.log(data);
+                searchList = new SearchList(data["pending-invitations"].map(obj => obj.connection));
                 let list = $(".info > .list");
+                curInfo = pendingInvitations;
                 data["pending-invitations"].forEach(item => {list.append(getListItem(pendingInvitations, item.connection))});
             };
             break;
@@ -172,6 +188,8 @@ const loadList = (ele) => {
                 session:session, userName:userName});
             ajaxUrl.success = function(data) {
                 console.log(data);
+                searchList = new SearchList(data["user-group-requests"].map(obj => obj.groupName));
+                curInfo = groupRequests;
                 let list = $(".info > .list");
                 data["user-group-requests"].forEach(item => {list.append(getListItem(groupRequests, item.groupName))});
             };

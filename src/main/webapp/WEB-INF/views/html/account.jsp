@@ -64,9 +64,8 @@
             <button class="remove" onclick="removeAccount(this)">Remove Account</button>
         </div>
         <div class="info">
-            <input type="name" name="search" placeholder="search here"/>
-            <div class="list">
-            </div>
+            <input type="name" name="search" placeholder="search here" autocomplete="off" onkeyup="infoSearch(this)"/>
+            <div class="list"></div>
         </div>
     </div>
 

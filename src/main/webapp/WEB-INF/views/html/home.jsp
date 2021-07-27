@@ -38,9 +38,7 @@
         <h2></h2>
     </div>
 </div>
-<div class="predictive-list">
-    <div class="item" onclick="getProfile(this)"></div>
-</div>
+<div class="predictive-list"></div>
 <div class="header">
     <div class="app-name">CHAT APP</div>
     <input type="name" name="search" id="search" placeholder="Search for users here" autocomplete="off" onkeyup="getPredictions(this)">
@@ -67,8 +65,7 @@
             <li onclick="logout(this)">Logout</li>
         </ul>
     </div>
-    <div class="message-area">
-    </div>
+    <div class="message-area"></div>
     <div class="input-area">
         <div class="draggable" onmousedown="chatareaMouseDown(this)"></div>
         <textarea class="chat-area" rows="10" cols="10"></textarea>

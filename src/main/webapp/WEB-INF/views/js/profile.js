@@ -68,7 +68,7 @@ const setButtonStatus = (status) => {
             break;
         case("Request"):
             $(".profile > .button-area > .btn1").text(acceptRequest);
-            $(".profile > .button-area > .btn2").show();
+            $(".profile > .button-area > .btn2").css("display", "inline-block");
             $(".profile > .button-area > .btn2").text(declineRequest);
             break;
     }

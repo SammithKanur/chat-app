@@ -1,5 +1,7 @@
 const members = "Members";
 const pendingInvitations = "Pending Invitations";
+let searchList = null;
+let curInfo = "";
 const showDropDown = (e) => {
     $(".user-dropdown").show();
 }
@@ -18,6 +20,19 @@ const getMemberListItem = (connection) => {
 const getPendingRequestItem = (connection) => {
     return `<div class="item"><div>${connection}</div></div>`;
 };
+const infoSearch = (ele) => {
+    let prefix = ele.value;
+    if(prefix.length > 0 && event.key === "Enter") {
+        $(".info > .list").empty();
+        let data = searchList.getList(prefix);
+        data.forEach(name => {
+            if(curInfo === members)
+                $(".info > .list").append(getMemberListItem(name));
+            else
+                $(".info > .list").append(getPendingRequestItem(name));
+        });
+    }
+};
 const loadList = (ele) => {
     $(".info > .list").empty();
     let ajaxUrl = {
@@ -33,6 +48,8 @@ const loadList = (ele) => {
                 session:session, groupName:groupName});
             ajaxUrl.success = function(data) {
                 console.log(data);
+                searchList = new SearchList(data['group-members'].map(name => name.userName));
+                curInfo = members;
                 data["group-members"].forEach(item => {
                     $(".info > .list").append(getMemberListItem(item.userName));
                 });
@@ -43,6 +60,8 @@ const loadList = (ele) => {
                 session:session, groupName:groupName});
             ajaxUrl.success = function(data) {
                 console.log(data);
+                curInfo = pendingInvitations;
+                searchList = new SearchList(data["group-pending-invitations"].map(name => name.userName));
                 data["group-pending-invitations"].forEach(item => {
                     $(".info > .list").append(getPendingRequestItem(item.userName));
                 });
@@ -76,8 +95,12 @@ const addMember = (ele) => {
         beforeSend:beforeSend,
         success:function(data) {
             console.log(data);
+            showResponseMessage(data, "lawngreen");
         },
-        error:function(data) {console.log(data);},
+        error:function(data) {
+            console.log(data);
+            showResponseMessage(data.responseText, "red");
+        },
         complete:onComplete,
     });
 };
