@@ -30,7 +30,7 @@ services:
     ports:
       - "8081:3306"
     environment:
-      MYSQL_DATABASE: chatApp
+      MYSQL_DATABASE: chatapp
       MYSQL_ROOT_PASSWORD: chatApp
       MYSQL_USER: user
       MYSQL_PASSWORD: chatApp
