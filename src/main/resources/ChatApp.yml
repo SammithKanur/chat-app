@@ -38,6 +38,26 @@ dev:
     url: "http://elasticsearch:9200/"
     index: "users"
 
+pre-prod:
+  server:
+    URL:
+      http://34.100.250.209:8443/chat-app
+    WSHOMEURL:
+      ws://34.100.250.209:8443/chat-app/websocket-home-server
+    WSMEETINGURL:
+      ws://34.100.250.209:8443/chat-app/websocket-meeting-server
+  mysql:
+    url: "jdbc:mysql://mysql:3306/chatapp"
+    script-url: "jdbc:mysql://localhost:8081"
+    userName: "user"
+    password: "chatApp"
+  mongo:
+    url: "mongoDb:27017"
+    dbName: "chatapp"
+  elasticsearch:
+    url: "http://elasticsearch:9200/"
+    index: "users"
+
 local:
   server:
     URL:
