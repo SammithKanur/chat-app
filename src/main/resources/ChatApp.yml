@@ -41,11 +41,11 @@ dev:
 pre-prod:
   server:
     URL:
-      http://34.100.250.209:8443/chat-app
+      http://sammith-projects.online:8443/chat-app
     WSHOMEURL:
-      ws://34.100.250.209:8443/chat-app/websocket-home-server
+      ws://sammith-projects.online:8443/chat-app/websocket-home-server
     WSMEETINGURL:
-      ws://34.100.250.209:8443/chat-app/websocket-meeting-server
+      ws://sammith-projects.online:8443/chat-app/websocket-meeting-server
   mysql:
     url: "jdbc:mysql://mysql:3306/chatapp"
     script-url: "jdbc:mysql://localhost:8081"
