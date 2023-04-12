@@ -1,0 +1,107 @@
+:root {
+    font-size: 1vw;
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas: "content"
+                         "footer";
+}
+.footer {
+    font-size: 0.8rem;
+    grid-area: footer;
+    background-color: black;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content {
+    position: relative;
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15% 1fr;
+    grid-template-areas: "heading"
+                         "form";
+    background-color: rgb(96, 231, 220);
+}
+.content > .heading {
+    grid-area: heading;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content > .heading > h2 {
+    font-size: 3rem;
+}
+.content > .form {
+    grid-area: form;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.login-form {
+    background-color: #F2FCFC;
+    height: 75%;
+    width: 55%;
+    box-shadow: 2rem 2rem 1rem #505152;
+    border: 0.2rem solid black;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+.login-form > h1 {
+    margin: 2%;
+    font-size: 2rem;
+}
+input, input:focus {
+    flex: 0 1 5%;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    width: 50%;
+    margin: 2%;
+    background-color: #F2FCFC;
+    border-bottom: 0.2rem solid #ccc;
+}
+#buttons {
+    flex: 0 1 1.5%;
+    width: 50%;
+    display: flex;
+}
+#login, #create {
+    flex: 0 1 auto;
+    padding: 5px;
+    font-size: 1rem;
+    background-color: #0245A3;
+    color: white;
+    margin: 2% 0;
+    border-radius: 5px;
+}
+#login {
+    margin-right: auto;
+    padding: 5px 3%;
+}
+#create {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login:hover, #create:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}

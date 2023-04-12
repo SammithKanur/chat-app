@@ -1,0 +1,1 @@
+sudo docker rm -f mysql elasticsearch mongo

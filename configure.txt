@@ -1,0 +1,22 @@
+
+Install docker
+1. read instuctions from docker documentation
+
+Install turnServer
+1. refer this https://ourcodeworld.com/articles/read/1175/how-to-create-and-configure-your-own-stun-turn-server-with-coturn-in-ubuntu-18-04
+2. change its config in /etc/turnserver.conf with the one in project
+3. restart turn server
+
+ElasticSearch
+1. run mkdir elasticsearch
+2. grant permissions to it.
+
+CertBot from LetsEncrypt(open source ssl certificate provider)
+1. Follow steps here https://certbot.eff.org/lets-encrypt/ubuntufocal-webproduct
+2. Once certbot is installed, use its help command to learn more about it.
+
+Maven
+1. sudo apt-get install maven
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM+BjBnmC5dvE4WpYSEGvFDw8/i4Qk1QW6Py5ro0odbU7vFNV8BdxzR617B2ChN5W9lh8ENF2JKSdIBPSCkqslWgEKXReYQbxeseuMC2TM2iO7lHfq9Ky89z5i5MyulMrTj44YfJnewxDW4VFnBLwtKFYx/TMCeh0smuA/Oz4Hx85AKUy/GonLvnE7Jrd286ekdvlC
+aAQo9Z3+QAOWfE26VT5fLFO58TCBYEt7MNcYnbT5lgyKVuelIODNBT2ryv8opgUwfiw7NNXY6HNP71u5XU8gOXrFQWIcwbIKjCS/yqjyc/J7o4Jv5HMAkk3Pb2SuCJowscQWrMm6CXq3iI8b sammithkanur@sammith-projects

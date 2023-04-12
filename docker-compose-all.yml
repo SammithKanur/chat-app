@@ -15,7 +15,7 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ./chat-app-server/war:/tomcat/apache-tomcat-9.0.54/webapps
+      - ./chat-app-server/war:/tomcat/apache-tomcat-9.0.73/webapps
       - ./src/main/resources:/chat-app-resources
     depends_on:
       - mysql
@@ -23,13 +23,17 @@ services:
       - elasticsearch
   mysql:
     container_name: chat-app-mysql
-    image: mysql:latest
+    image: mysql/mysql-server:latest
     volumes:
       - ./mysql:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d
     ports:
       - "8081:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=chatApp
+      MYSQL_DATABASE: chatApp
+      MYSQL_ROOT_PASSWORD: chatApp
+      MYSQL_USER: user
+      MYSQL_PASSWORD: chatApp
     networks:
       - mysql
   elasticsearch:
@@ -57,7 +61,7 @@ services:
     restart: unless-stopped
   mongoDb:
     container_name: chat-app-mongo
-    image: mongo:latest
+    image: mongo:5.0
     ports:
       - "8085:27017"
     volumes:
