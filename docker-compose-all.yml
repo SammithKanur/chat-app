@@ -15,7 +15,7 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ./chat-app-server/war:/tomcat/apache-tomcat-9.0.50/webapps
+      - ./chat-app-server/war:/tomcat/apache-tomcat-9.0.54/webapps
       - ./src/main/resources:/chat-app-resources
     depends_on:
       - mysql
