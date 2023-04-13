@@ -45,7 +45,7 @@
     </div>
     <div class="video-streams"></div>
 </div>
-<div class="footer">Copyright &copy 2021 Sammith K A. All rights reserved </div>
+<div class="footer">Copyright &copy 2023 Sammith K A. All rights reserved </div>
 <script>
     const userName = "${userName}";
     const session = "${session}";

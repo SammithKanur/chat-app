@@ -70,7 +70,7 @@
     </div>
 
 </div>
-<div class="footer"><p>Copyright &copy 2021 Sammith K A. All rights reserved</p> </div>
+<div class="footer"><p>Copyright &copy 2023 Sammith K A. All rights reserved</p> </div>
 </body>
 <script>
     const userName = "${userName}";
